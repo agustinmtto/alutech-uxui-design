@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AluTech S.A. — Portal de Aberturas de Aluminio y PVC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#F4F6FB;--azul-oscuro:#0B2D5C;--azul-medio:#1E63B6;--azul-claro:#E8F0FB;
+    --naranja:#F26A21;--naranja-claro:#FDECE3;--verde:#2E7D32;--verde-claro:#E6F4EA;
+    --rojo:#C62828;--amarillo:#E6A700;--amarillo-claro:#FBF3D6;
+    --gris-texto:#2B2B2B;--gris-sec:#6B7280;--gris-borde:#E2E6EE;--gris-claro:#F0F3F8;--blanco:#FFFFFF;
+    --sombra:0 1px 2px rgba(11,45,92,.06),0 1px 3px rgba(11,45,92,.05);
+    --sombra-md:0 6px 22px rgba(11,45,92,.10);--sombra-lg:0 18px 50px rgba(11,45,92,.16);
+    --radio:14px;--radio-sm:10px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--gris-texto);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:#cdd6e4;border-radius:8px;border:2px solid var(--bg)}
+  ::-webkit-scrollbar-thumb:hover{background:#b3becf}
+  a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer;border:none;background:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+
+  .topbar{background:var(--azul-oscuro);color:#cfd9ea;font-size:12px}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:34px}
+  .topbar .tb-left{display:flex;align-items:center;gap:18px}
+  .topbar .tb-left span{display:flex;align-items:center;gap:6px}
+  .topbar .tb-right{display:flex;align-items:center;gap:16px}
+  .topbar a:hover{color:#fff}.topbar .sep{opacity:.4}
+
+  header.hdr{background:var(--blanco);border-bottom:1px solid var(--gris-borde);position:sticky;top:0;z-index:50;box-shadow:var(--sombra)}
+  .hdr .wrap{display:flex;align-items:center;gap:26px;height:72px}
+  .logo{display:flex;align-items:center;gap:11px;flex:0 0 auto;cursor:pointer}
+  .logo-mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--naranja),#ff8a4a);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;letter-spacing:-.5px;box-shadow:0 4px 12px rgba(242,106,33,.35)}
+  .logo-text{font-size:20px;font-weight:800;color:var(--azul-oscuro);letter-spacing:-.4px;line-height:1}
+  .logo-text span{color:var(--naranja)}
+  .logo-sub{font-size:10px;color:var(--gris-sec);font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-top:3px}
+  .search{flex:1;max-width:560px;position:relative}
+  .search input{width:100%;height:42px;border:1.5px solid var(--gris-borde);border-radius:10px;padding:0 16px 0 42px;font-size:14px;background:var(--gris-claro);transition:.15s;outline:none;font-family:inherit}
+  .search input:focus{border-color:var(--azul-medio);background:#fff;box-shadow:0 0 0 4px var(--azul-claro)}
+  .search .ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--gris-sec)}
+  .hdr-actions{display:flex;align-items:center;gap:6px;margin-left:auto}
+  .hbtn{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 14px;border-radius:10px;color:var(--gris-sec);font-size:11px;font-weight:600;position:relative;transition:.15s;cursor:pointer}
+  .hbtn:hover{background:var(--gris-claro);color:var(--azul-oscuro)}
+  .hbtn svg{width:22px;height:22px;stroke-width:1.7}
+  .hbtn .badge{position:absolute;top:4px;right:8px;min-width:18px;height:18px;padding:0 5px;background:var(--naranja);color:#fff;border-radius:9px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+  .catnav{background:#fff;border-bottom:1px solid var(--gris-borde)}
+  .catnav .wrap{display:flex;align-items:center;gap:4px;height:46px;overflow-x:auto}
+  .catnav a{padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--gris-sec);white-space:nowrap;transition:.15s;cursor:pointer}
+  .catnav a:hover{background:var(--azul-claro);color:var(--azul-medio)}
+  .catnav a.active{background:var(--azul-oscuro);color:#fff}
+  .catnav .all{margin-left:auto;color:var(--azul-medio);font-weight:700}
+
+  .view{display:none;padding:26px 0 60px}.view.active{display:block}
+
+  .hero{background:linear-gradient(115deg,#0B2D5C 0%,#143f7d 55%,#1E63B6 100%);border-radius:22px;color:#fff;padding:46px 50px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:30px;margin-bottom:26px}
+  .hero::before{content:"";position:absolute;right:-80px;top:-80px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(242,106,33,.35),transparent 70%)}
+  .hero::after{content:"";position:absolute;right:60px;bottom:-120px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(30,99,182,.5),transparent 70%)}
+  .hero-txt{flex:1;position:relative;z-index:2}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.3px;margin-bottom:18px;border:1px solid rgba(255,255,255,.18)}
+  .hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--naranja)}
+  .hero h1{font-size:34px;font-weight:800;line-height:1.15;letter-spacing:-.6px;margin-bottom:14px;max-width:560px}
+  .hero p{font-size:15px;color:#cfd9ea;max-width:520px;margin-bottom:24px}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:10px;font-size:14px;font-weight:700;transition:.15s;border:1.5px solid transparent;cursor:pointer}
+  .btn svg{width:18px;height:18px;stroke-width:2}
+  .btn-primary{background:var(--naranja);color:#fff;box-shadow:0 6px 18px rgba(242,106,33,.4)}
+  .btn-primary:hover{background:#e85f15;transform:translateY(-1px)}
+  .btn-ghost{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.25)}
+  .btn-ghost:hover{background:rgba(255,255,255,.18)}
+  .btn-light{background:#fff;color:var(--azul-oscuro)}.btn-light:hover{background:#f0f3f8}
+  .btn-outline{background:transparent;color:var(--azul-medio);border-color:var(--azul-medio)}.btn-outline:hover{background:var(--azul-claro)}
+  .btn-block{width:100%}.btn-sm{padding:9px 16px;font-size:13px}
+  .hero-card{flex:0 0 300px;background:rgba(255,255,255,.08);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:22px;z-index:2}
+  .hero-card h3{font-size:14px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .hero-card .hc-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,.1)}
+  .hero-card .hc-item:first-of-type{border-top:none}
+  .hero-card .hc-ico{width:36px;height:36px;border-radius:9px;background:rgba(242,106,33,.2);display:flex;align-items:center;justify-content:center;color:var(--naranja);flex:0 0 36px}
+  .hero-card .hc-ico svg{width:20px;height:20px;stroke-width:1.8}
+  .hero-card .hc-t{font-size:13px;font-weight:600;line-height:1.2}
+  .hero-card .hc-s{font-size:11px;color:#a8b6d4;margin-top:2px}
+
+  .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:34px}
+  .strip .s{background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);padding:18px 20px;display:flex;align-items:center;gap:14px;box-shadow:var(--sombra)}
+  .strip .s-ico{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex:0 0 44px}
+  .strip .s-ico svg{width:23px;height:23px;stroke-width:1.8}
+  .strip .s-t{font-size:13.5px;font-weight:700;color:var(--azul-oscuro)}
+  .strip .s-s{font-size:11.5px;color:var(--gris-sec);margin-top:1px}
+  .s-azul{background:var(--azul-claro);color:var(--azul-medio)}
+  .s-naranja{background:var(--naranja-claro);color:var(--naranja)}
+  .s-verde{background:var(--verde-claro);color:var(--verde)}
+  .s-amarillo{background:var(--amarillo-claro);color:var(--amarillo)}
+
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:18px}
+  .sec-head h2{font-size:22px;font-weight:800;color:var(--azul-oscuro);letter-spacing:-.4px}
+  .sec-head .sub{font-size:13px;color:var(--gris-sec);margin-top:3px}
+  .sec-head a{font-size:13px;font-weight:700;color:var(--azul-medio);display:flex;align-items:center;gap:5px;cursor:pointer}
+  .sec-head a svg{width:16px;height:16px;stroke-width:2.2}
+
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .card{background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);overflow:hidden;transition:.18s;cursor:pointer;display:flex;flex-direction:column}
+  .card:hover{box-shadow:var(--sombra-md);transform:translateY(-3px);border-color:#c9d3e6}
+  .card-img{height:180px;background:linear-gradient(135deg,#eef3fb,#dbe6f4);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .card-img .ab{position:relative;width:120px;height:150px}
+  .card-tag{position:absolute;top:10px;left:10px;background:#fff;color:var(--azul-oscuro);font-size:10px;font-weight:700;padding:4px 9px;border-radius:6px;letter-spacing:.3px;box-shadow:var(--sombra);text-transform:uppercase}
+  .card-tag.naranja{background:var(--naranja);color:#fff}.card-tag.verde{background:var(--verde);color:#fff}
+  .fav{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--gris-sec);box-shadow:var(--sombra);transition:.15s;cursor:pointer}
+  .fav:hover{color:var(--naranja)}.fav svg{width:17px;height:17px;stroke-width:1.8}.fav.on{color:var(--naranja);fill:var(--naranja)}
+  .card-body{padding:15px 16px 16px;display:flex;flex-direction:column;flex:1}
+  .card-cat{font-size:11px;color:var(--azul-medio);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+  .card-title{font-size:14.5px;font-weight:700;color:var(--azul-oscuro);line-height:1.25;margin-bottom:8px;flex:1}
+  .card-meta{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--gris-sec);margin-bottom:11px;flex-wrap:wrap}
+  .card-meta .m{display:flex;align-items:center;gap:4px}.card-meta .m svg{width:13px;height:13px;stroke-width:1.8}
+  .card-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:8px}
+  .card-price{font-size:18px;font-weight:800;color:var(--azul-oscuro);letter-spacing:-.3px;line-height:1}
+  .card-price small{font-size:11px;color:var(--gris-sec);font-weight:500;display:block;margin-top:3px}
+  .card-add{width:38px;height:38px;border-radius:10px;background:var(--naranja);color:#fff;display:flex;align-items:center;justify-content:center;transition:.15s;flex:0 0 38px}
+  .card-add:hover{background:#e85f15;transform:scale(1.06)}.card-add svg{width:19px;height:19px;stroke-width:2.2}
+  .ab svg{width:100%;height:100%}
+
+  .cat-layout{display:grid;grid-template-columns:248px 1fr;gap:24px;align-items:start}
+  .filtros{background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);padding:6px 0;position:sticky;top:130px}
+  .filtros h3{font-size:13px;font-weight:800;color:var(--azul-oscuro);padding:14px 18px 10px;text-transform:uppercase;letter-spacing:.5px}
+  .f-grp{border-top:1px solid var(--gris-borde);padding:12px 18px}
+  .f-grp h4{font-size:12px;font-weight:700;color:var(--gris-sec);margin-bottom:10px;text-transform:uppercase;letter-spacing:.4px}
+  .f-opt{display:flex;align-items:center;gap:9px;padding:5px 0;cursor:pointer;font-size:13px;color:var(--gris-texto)}
+  .f-opt input{width:16px;height:16px;accent-color:var(--azul-medio);cursor:pointer}
+  .f-opt:hover{color:var(--azul-medio)}
+  .f-opt .c{margin-left:auto;font-size:11px;color:var(--gris-sec);background:var(--gris-claro);padding:1px 7px;border-radius:999px}
+  .f-rng{display:flex;gap:8px;margin-top:6px}
+  .f-rng input{width:100%;height:32px;border:1px solid var(--gris-borde);border-radius:7px;padding:0 8px;font-size:12px;font-family:inherit;outline:none}
+  .f-rng input:focus{border-color:var(--azul-medio)}
+  .f-clr{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+  .clr{width:24px;height:24px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--gris-borde);cursor:pointer}
+  .clr.sel{box-shadow:0 0 0 2px var(--azul-medio)}
+  .cat-toolbar{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);padding:12px 16px;margin-bottom:18px}
+  .cat-toolbar .r{font-size:13px;color:var(--gris-sec)}.cat-toolbar .r b{color:var(--azul-oscuro)}
+  .cat-toolbar .ord{display:flex;align-items:center;gap:8px}
+  .cat-toolbar select{height:34px;border:1px solid var(--gris-borde);border-radius:8px;padding:0 10px;font-size:13px;font-family:inherit;background:#fff;outline:none;cursor:pointer}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .chip{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--gris-borde);padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;color:var(--gris-texto)}
+  .chip .x{cursor:pointer;color:var(--gris-sec);font-size:15px;line-height:1}.chip .x:hover{color:var(--rojo)}
+
+  .crumb{font-size:12px;color:var(--gris-sec);margin-bottom:16px;display:flex;align-items:center;gap:7px}
+  .crumb a{cursor:pointer}.crumb a:hover{color:var(--azul-medio)}.crumb .sep{opacity:.5}
+  .prod{display:grid;grid-template-columns:1.1fr 1fr;gap:36px;background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);padding:28px}
+  .prod-main-img{height:440px;background:linear-gradient(135deg,#eef3fb,#dbe6f4);border-radius:var(--radio);display:flex;align-items:center;justify-content:center;margin-bottom:14px;position:relative}
+  .prod-main-img .ab{width:280px;height:360px}
+  .prod-thumbs{display:flex;gap:10px}
+  .prod-thumbs .t{width:74px;height:74px;border:1.5px solid var(--gris-borde);border-radius:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#eef3fb;transition:.15s}
+  .prod-thumbs .t:hover{border-color:var(--azul-medio)}
+  .prod-thumbs .t.sel{border-color:var(--azul-medio);box-shadow:0 0 0 3px var(--azul-claro)}
+  .prod-thumbs .t .ab{width:50px;height:60px}
+  .prod-cat{font-size:11px;color:var(--azul-medio);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+  .prod-info h1{font-size:26px;font-weight:800;color:var(--azul-oscuro);letter-spacing:-.4px;line-height:1.2;margin-bottom:10px}
+  .prod-stars{display:flex;align-items:center;gap:8px;margin-bottom:16px;font-size:12.5px;color:var(--gris-sec)}
+  .stars{color:var(--amarillo);letter-spacing:1px}
+  .prod-price{display:flex;align-items:baseline;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+  .prod-price .now{font-size:30px;font-weight:800;color:var(--azul-oscuro);letter-spacing:-.5px}
+  .prod-price .old{font-size:16px;color:var(--gris-sec);text-decoration:line-through}
+  .prod-price .off{background:var(--naranja-claro);color:var(--naranja);font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px}
+  .prod-price .cuotas{font-size:12px;color:var(--verde);font-weight:700;margin-left:auto}
+  .opt-box{border:1px solid var(--gris-borde);border-radius:var(--radio-sm);padding:14px 16px;margin-bottom:14px}
+  .opt-box .lbl{font-size:12px;font-weight:700;color:var(--gris-sec);text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px;display:flex;justify-content:space-between}
+  .opt-box .lbl .v{color:var(--azul-oscuro)}
+  .opt-row{display:flex;gap:8px;flex-wrap:wrap}
+  .opt{padding:8px 14px;border:1.5px solid var(--gris-borde);border-radius:8px;font-size:13px;font-weight:600;color:var(--gris-texto);cursor:pointer;transition:.15s;background:#fff}
+  .opt:hover{border-color:var(--azul-medio)}
+  .opt.sel{border-color:var(--azul-medio);background:var(--azul-claro);color:var(--azul-medio)}
+  .opt .pr{display:block;font-size:11px;color:var(--gris-sec);font-weight:500;margin-top:2px}
+  .opt.sel .pr{color:var(--azul-medio)}
+  .med-input{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .med-input .f label{font-size:11px;color:var(--gris-sec);font-weight:600;display:block;margin-bottom:4px}
+  .med-input .f .in{display:flex;align-items:center;border:1.5px solid var(--gris-borde);border-radius:8px;overflow:hidden}
+  .med-input .f .in input{width:100%;height:38px;border:none;padding:0 10px;font-size:14px;font-family:inherit;outline:none}
+  .med-input .f .in .u{padding:0 10px;font-size:11px;color:var(--gris-sec);font-weight:600;border-left:1px solid var(--gris-borde);height:100%;display:flex;align-items:center;background:var(--gris-claro)}
+  .qty-row{display:flex;align-items:center;gap:14px;margin:18px 0}
+  .qty{display:flex;align-items:center;border:1.5px solid var(--gris-borde);border-radius:9px;overflow:hidden}
+  .qty button{width:38px;height:38px;font-size:18px;color:var(--azul-oscuro);font-weight:700}.qty button:hover{background:var(--gris-claro)}
+  .qty input{width:50px;height:38px;border:none;text-align:center;font-size:15px;font-weight:700;font-family:inherit;outline:none}
+  .prod-actions{display:flex;gap:10px;margin-bottom:18px}
+  .prod-actions .btn{flex:1}
+  .prod-actions .btn-ic{flex:0 0 auto;width:48px;padding:0;border:1.5px solid var(--gris-borde);color:var(--gris-sec)}
+  .prod-actions .btn-ic:hover{color:var(--naranja);border-color:var(--naranja)}
+  .prod-benefits{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px solid var(--gris-borde);padding-top:16px}
+  .pb{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--gris-texto)}.pb svg{width:18px;height:18px;stroke-width:1.8;flex:0 0 18px}
+  .pb.azul svg{color:var(--azul-medio)}.pb.verde svg{color:var(--verde)}.pb.naranja svg{color:var(--naranja)}.pb.amarillo svg{color:var(--amarillo)}
+  .prod-tabs{margin-top:22px}
+  .tabs-nav{display:flex;gap:4px;border-bottom:1px solid var(--gris-borde);margin-bottom:18px;flex-wrap:wrap}
+  .tabs-nav button{padding:11px 18px;font-size:13.5px;font-weight:700;color:var(--gris-sec);border-bottom:2.5px solid transparent;margin-bottom:-1px}
+  .tabs-nav button.active{color:var(--azul-oscuro);border-color:var(--naranja)}
+  .tab-pane{display:none;font-size:13.5px;color:var(--gris-texto);line-height:1.7}
+  .tab-pane.active{display:block}
+  .tab-pane h4{font-size:14px;font-weight:700;color:var(--azul-oscuro);margin:14px 0 8px}
+  .tab-pane ul{padding-left:20px;margin:8px 0}.tab-pane li{margin-bottom:5px}
+  .spec-table{width:100%;border-collapse:collapse;font-size:13px}
+  .spec-table td{padding:9px 12px;border-bottom:1px solid var(--gris-borde)}
+  .spec-table td:first-child{font-weight:600;color:var(--gris-sec);width:42%;background:var(--gris-claro)}
+  .spec-table td:last-child{color:var(--azul-oscuro);font-weight:600}
+
+  .cart-layout{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+  .cart-items{background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);padding:6px 0}
+  .cart-item{display:flex;gap:16px;padding:18px 20px;border-bottom:1px solid var(--gris-borde);align-items:center}
+  .cart-item:last-child{border-bottom:none}
+  .cart-img{width:90px;height:90px;border-radius:10px;background:#eef3fb;display:flex;align-items:center;justify-content:center;flex:0 0 90px}
+  .cart-img .ab{width:60px;height:74px}
+  .cart-it-info{flex:1;min-width:0}
+  .cart-it-info .t{font-size:14.5px;font-weight:700;color:var(--azul-oscuro);margin-bottom:4px}
+  .cart-it-info .m{font-size:12px;color:var(--gris-sec);display:flex;gap:10px;flex-wrap:wrap}
+  .cart-it-info .m span{display:flex;align-items:center;gap:4px}
+  .cart-it-price{text-align:right;flex:0 0 auto}
+  .cart-it-price .p{font-size:16px;font-weight:800;color:var(--azul-oscuro)}
+  .cart-it-price .rm{font-size:12px;color:var(--rojo);cursor:pointer;margin-top:4px;font-weight:600}.cart-it-price .rm:hover{text-decoration:underline}
+  .cart-it-qty .qty button{width:30px;height:30px;font-size:15px}.cart-it-qty .qty input{height:30px;width:42px;font-size:13px}
+
+  .summary{background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);padding:22px;position:sticky;top:130px}
+  .summary h3{font-size:15px;font-weight:800;color:var(--azul-oscuro);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--gris-borde)}
+  .sum-row{display:flex;justify-content:space-between;font-size:13px;color:var(--gris-texto);margin-bottom:10px}.sum-row .v{font-weight:600}
+  .sum-row.discount .v{color:var(--verde)}
+  .sum-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:14px;margin-top:6px;border-top:1.5px solid var(--gris-borde);margin-bottom:16px}
+  .sum-total .l{font-size:14px;font-weight:700;color:var(--azul-oscuro)}
+  .sum-total .v{font-size:24px;font-weight:800;color:var(--azul-oscuro);letter-spacing:-.3px}
+  .sum-cupon{display:flex;gap:8px;margin-bottom:14px}
+  .sum-cupon input{flex:1;height:38px;border:1.5px solid var(--gris-borde);border-radius:8px;padding:0 12px;font-size:13px;font-family:inherit;outline:none}
+  .sum-cupon button{padding:0 16px;background:var(--gris-claro);border-radius:8px;font-size:13px;font-weight:700;color:var(--azul-oscuro)}.sum-cupon button:hover{background:#e3e9f2}
+
+  .steps{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:26px;flex-wrap:wrap}
+  .step{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--gris-sec)}
+  .step .n{width:30px;height:30px;border-radius:50%;background:var(--gris-claro);border:1.5px solid var(--gris-borde);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--gris-sec)}
+  .step.active .n{background:var(--azul-medio);color:#fff;border-color:var(--azul-medio)}
+  .step.done .n{background:var(--verde);color:#fff;border-color:var(--verde)}
+  .step.active{color:var(--azul-oscuro)}
+  .step-line{width:50px;height:2px;background:var(--gris-borde)}.step-line.done{background:var(--verde)}
+
+  .form-card{background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);padding:24px;margin-bottom:18px}
+  .form-card h3{font-size:15px;font-weight:800;color:var(--azul-oscuro);margin-bottom:16px;display:flex;align-items:center;gap:9px}
+  .form-card h3 svg{width:19px;height:19px;stroke-width:1.8;color:var(--azul-medio)}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .f-full{grid-column:1/-1}
+  .field label{font-size:12px;font-weight:600;color:var(--gris-sec);display:block;margin-bottom:5px}
+  .field input,.field select{width:100%;height:42px;border:1.5px solid var(--gris-borde);border-radius:9px;padding:0 12px;font-size:14px;font-family:inherit;outline:none;transition:.15s;background:#fff}
+  .field input:focus,.field select:focus{border-color:var(--azul-medio);box-shadow:0 0 0 3px var(--azul-claro)}
+  .pay-method{display:flex;flex-direction:column;gap:10px}
+  .pay-opt{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid var(--gris-borde);border-radius:10px;cursor:pointer;transition:.15s}
+  .pay-opt:hover{border-color:var(--azul-medio)}.pay-opt.sel{border-color:var(--azul-medio);background:var(--azul-claro)}
+  .pay-opt input{display:none}
+  .pay-opt .pp-ico{width:42px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex:0 0 42px}
+  .pay-opt .pp-t{font-size:14px;font-weight:700;color:var(--azul-oscuro)}
+  .pay-opt .pp-s{font-size:11.5px;color:var(--gris-sec);margin-top:2px}
+  .pp-azul{background:var(--azul-medio)}.pp-naranja{background:var(--naranja)}.pp-verde{background:var(--verde)}
+  .pago-info{background:var(--azul-claro);border-radius:10px;padding:14px 16px;margin-top:14px;font-size:12.5px;color:var(--azul-oscuro);line-height:1.6}
+  .pago-info b{font-weight:800}
+
+  .acc-layout{display:grid;grid-template-columns:260px 1fr;gap:24px;align-items:start}
+  .acc-side{background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);padding:8px;position:sticky;top:130px}
+  .acc-user{padding:16px 14px 14px;border-bottom:1px solid var(--gris-borde);margin-bottom:6px;display:flex;align-items:center;gap:12px}
+  .acc-avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--azul-medio),var(--azul-oscuro));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex:0 0 46px}
+  .acc-user .n{font-size:14px;font-weight:700;color:var(--azul-oscuro);line-height:1.2}
+  .acc-user .e{font-size:11.5px;color:var(--gris-sec);margin-top:2px}
+  .acc-user .tag{display:inline-block;font-size:9.5px;font-weight:800;background:var(--naranja-claro);color:var(--naranja);padding:2px 7px;border-radius:5px;margin-top:4px;text-transform:uppercase;letter-spacing:.3px}
+  .acc-nav button{display:flex;align-items:center;gap:11px;width:100%;padding:11px 12px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--gris-texto);transition:.15s;text-align:left}
+  .acc-nav button:hover{background:var(--gris-claro)}
+  .acc-nav button.active{background:var(--azul-claro);color:var(--azul-medio);font-weight:700}
+  .acc-nav button svg{width:19px;height:19px;stroke-width:1.8;flex:0 0 19px}
+  .acc-nav .sep{height:1px;background:var(--gris-borde);margin:8px 12px}
+  .acc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+  .acc-head h1{font-size:22px;font-weight:800;color:var(--azul-oscuro);letter-spacing:-.4px}
+  .acc-head .sub{font-size:13px;color:var(--gris-sec);margin-top:3px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+  .stat{background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);padding:18px}
+  .stat .lbl{font-size:11px;color:var(--gris-sec);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+  .stat .num{font-size:24px;font-weight:800;color:var(--azul-oscuro);margin-top:6px;letter-spacing:-.3px}
+  .stat .delta{font-size:11px;margin-top:5px;font-weight:700;display:flex;align-items:center;gap:4px}
+  .stat .delta.up{color:var(--verde)}.stat .delta.dn{color:var(--rojo)}
+  .table-card{background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);overflow:hidden;margin-bottom:18px}
+  .table-card .th{display:grid;grid-template-columns:1fr 120px 130px 130px 120px 90px;background:var(--gris-claro);padding:12px 18px;font-size:11px;font-weight:700;color:var(--gris-sec);text-transform:uppercase;letter-spacing:.4px}
+  .table-card .tr{display:grid;grid-template-columns:1fr 120px 130px 130px 120px 90px;padding:14px 18px;border-top:1px solid var(--gris-borde);align-items:center;font-size:13px}
+  .table-card .tr:hover{background:var(--gris-claro)}
+  .table-card .tr .oid{font-weight:700;color:var(--azul-oscuro)}
+  .table-card .tr .oid small{display:block;font-size:11px;color:var(--gris-sec);font-weight:500;margin-top:2px}
+  .st{font-weight:700;font-size:12px;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px}
+  .st-fab{background:var(--azul-claro);color:var(--azul-medio)}.st-rel{background:var(--amarillo-claro);color:var(--amarillo)}
+  .st-dis{background:#e8f0fe;color:#1a51b0}.st-ent{background:var(--verde-claro);color:var(--verde)}
+  .st-ins{background:var(--naranja-claro);color:var(--naranja)}.st-fin{background:#e6f4ea;color:#1b6b1f}
+  .st .d{width:7px;height:7px;border-radius:50%;background:currentColor}
+  .table-card .tr .act{font-size:12px;font-weight:700;color:var(--azul-medio);cursor:pointer;display:flex;align-items:center;gap:4px}.table-card .tr .act:hover{text-decoration:underline}
+
+  .track-wrap{background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);padding:28px}
+  .track-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--gris-borde);flex-wrap:wrap;gap:14px}
+  .track-head .l h1{font-size:20px;font-weight:800;color:var(--azul-oscuro);letter-spacing:-.3px}
+  .track-head .l .d{font-size:13px;color:var(--gris-sec);margin-top:4px}
+  .track-head .r{text-align:right}
+  .track-head .r .eta{font-size:12px;color:var(--gris-sec);font-weight:600}
+  .track-head .r .etav{font-size:22px;font-weight:800;color:var(--verde);letter-spacing:-.3px}
+  .track-head .r .etad{font-size:11px;color:var(--gris-sec)}
+  .track-grid{display:grid;grid-template-columns:1fr 320px;gap:28px;align-items:start}
+  .timeline{position:relative;padding-left:36px}
+  .timeline::before{content:"";position:absolute;left:13px;top:8px;bottom:8px;width:2.5px;background:var(--gris-borde);border-radius:2px}
+  .tl-step{position:relative;padding-bottom:26px}.tl-step:last-child{padding-bottom:0}
+  .tl-dot{position:absolute;left:-36px;top:2px;width:28px;height:28px;border-radius:50%;background:#fff;border:2.5px solid var(--gris-borde);display:flex;align-items:center;justify-content:center;z-index:2}
+  .tl-dot svg{width:15px;height:15px;stroke-width:2}
+  .tl-step.done .tl-dot{background:var(--verde);border-color:var(--verde);color:#fff}
+  .tl-step.active .tl-dot{background:var(--naranja);border-color:var(--naranja);color:#fff;box-shadow:0 0 0 5px var(--naranja-claro)}
+  .tl-step.pending .tl-dot{color:var(--gris-sec)}
+  .tl-step .ts{font-size:11px;color:var(--gris-sec);font-weight:600}
+  .tl-step .tt{font-size:14px;font-weight:700;color:var(--azul-oscuro);margin:2px 0 4px}
+  .tl-step.pending .tt{color:var(--gris-sec)}
+  .tl-step .td{font-size:12.5px;color:var(--gris-texto);line-height:1.5}
+  .tl-step .td .det{display:flex;gap:14px;flex-wrap:wrap;margin-top:7px;font-size:11.5px;color:var(--gris-sec)}
+  .tl-step .td .det span{display:flex;align-items:center;gap:4px}
+  .tl-step .td .det span svg{width:13px;height:13px;stroke-width:1.8}
+  .ts-card{background:var(--gris-claro);border-radius:var(--radio-sm);padding:18px;margin-bottom:16px}
+  .ts-card h4{font-size:13px;font-weight:800;color:var(--azul-oscuro);margin-bottom:12px;text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;gap:8px}
+  .ts-card h4 svg{width:16px;height:16px;stroke-width:1.8;color:var(--azul-medio)}
+  .ts-row{display:flex;justify-content:space-between;font-size:12.5px;padding:6px 0}
+  .ts-row .l{color:var(--gris-sec)}.ts-row .v{font-weight:600;color:var(--azul-oscuro)}
+  .ficha{background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio-sm);padding:16px;margin-top:14px}
+  .ficha h5{font-size:12px;font-weight:800;color:var(--azul-oscuro);margin-bottom:10px;text-transform:uppercase;letter-spacing:.4px}
+  .ficha-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px dashed var(--gris-borde)}
+  .ficha-row:last-child{border-bottom:none}
+  .ficha-row .l{color:var(--gris-sec)}.ficha-row .v{font-weight:600;color:var(--azul-oscuro)}
+  .agenda-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+  .slot{border:1.5px solid var(--gris-borde);border-radius:8px;padding:9px;text-align:center;cursor:pointer;font-size:12px;font-weight:600;color:var(--gris-texto);transition:.15s}
+  .slot:hover{border-color:var(--azul-medio)}
+  .slot.sel{border-color:var(--azul-medio);background:var(--azul-claro);color:var(--azul-medio)}
+  .slot .h{font-size:13px;font-weight:800;color:var(--azul-oscuro)}.slot.sel .h{color:var(--azul-medio)}
+  .slot .d{font-size:10px;color:var(--gris-sec);margin-top:2px}
+
+  .tk-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
+  .tk-list{background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);overflow:hidden}
+  .tk-item{padding:16px 20px;border-bottom:1px solid var(--gris-borde);cursor:pointer;transition:.15s}.tk-item:hover{background:var(--gris-claro)}.tk-item:last-child{border-bottom:none}
+  .tk-item .th-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .tk-item .tkid{font-size:13px;font-weight:700;color:var(--azul-oscuro)}
+  .tk-item .tkst{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px}
+  .st-abierto{background:var(--amarillo-claro);color:var(--amarillo)}.st-proceso{background:var(--azul-claro);color:var(--azul-medio)}.st-resuelto{background:var(--verde-claro);color:var(--verde)}
+  .tk-item .tts{font-size:14px;font-weight:600;color:var(--gris-texto);margin-bottom:5px}
+  .tk-item .tmeta{font-size:11.5px;color:var(--gris-sec);display:flex;gap:12px}
+  .tk-item .tmeta span{display:flex;align-items:center;gap:4px}.tk-item .tmeta svg{width:13px;height:13px;stroke-width:1.8}
+  .tk-convo{background:var(--gris-claro);border-radius:10px;padding:12px 14px;margin-top:10px;font-size:12.5px;color:var(--gris-texto);line-height:1.6}
+  .tk-convo .msg{padding:8px 0;border-bottom:1px dashed var(--gris-borde)}.tk-convo .msg:last-child{border-bottom:none}
+  .tk-convo .msg .who{font-size:11px;font-weight:700;color:var(--azul-medio);margin-bottom:2px}.tk-convo .msg .who.cli{color:var(--naranja)}
+  .new-tk{background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);padding:20px;position:sticky;top:130px}
+  .new-tk h3{font-size:14px;font-weight:800;color:var(--azul-oscuro);margin-bottom:14px}
+  .new-tk .field{margin-bottom:12px}
+  .new-tk textarea{width:100%;min-height:80px;border:1.5px solid var(--gris-borde);border-radius:9px;padding:10px 12px;font-size:13px;font-family:inherit;resize:vertical;outline:none}.new-tk textarea:focus{border-color:var(--azul-medio)}
+
+  .modal{position:fixed;inset:0;background:rgba(11,45,92,.5);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;backdrop-filter:blur(3px)}
+  .modal.open{display:flex}
+  .modal-box{background:#fff;border-radius:16px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:var(--sombra-lg)}
+  .modal-head{padding:20px 24px;border-bottom:1px solid var(--gris-borde);display:flex;align-items:center;justify-content:space-between}
+  .modal-head h3{font-size:17px;font-weight:800;color:var(--azul-oscuro)}
+  .modal-head .x{width:32px;height:32px;border-radius:8px;color:var(--gris-sec);font-size:20px}.modal-head .x:hover{background:var(--gris-claro);color:var(--rojo)}
+  .modal-body{padding:24px}
+  .modal-foot{padding:16px 24px;border-top:1px solid var(--gris-borde);display:flex;justify-content:flex-end;gap:10px}
+
+  .chat-fab{position:fixed;right:24px;bottom:24px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--naranja),#ff8a4a);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(242,106,33,.45);cursor:pointer;z-index:90;transition:.2s}
+  .chat-fab:hover{transform:scale(1.06)}.chat-fab svg{width:28px;height:28px;stroke-width:1.9}
+  .chat-fab .ind{position:absolute;top:4px;right:4px;width:14px;height:14px;background:var(--verde);border-radius:50%;border:2.5px solid #fff}
+  .chat-win{position:fixed;right:24px;bottom:96px;width:370px;height:520px;background:#fff;border-radius:16px;box-shadow:var(--sombra-lg);display:none;flex-direction:column;z-index:95;overflow:hidden}
+  .chat-win.open{display:flex}
+  .chat-head{background:var(--azul-oscuro);color:#fff;padding:16px 18px;display:flex;align-items:center;gap:11px}
+  .chat-head .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--naranja),#ff8a4a);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex:0 0 38px}
+  .chat-head .ti{flex:1}.chat-head .ti .n{font-size:14px;font-weight:700;line-height:1.2}
+  .chat-head .ti .s{font-size:11px;color:#9fb3d4;margin-top:2px;display:flex;align-items:center;gap:5px}
+  .chat-head .ti .s .d{width:7px;height:7px;border-radius:50%;background:var(--verde)}
+  .chat-head .cl{width:30px;height:30px;border-radius:8px;color:#fff;font-size:18px}.chat-head .cl:hover{background:rgba(255,255,255,.12)}
+  .chat-body{flex:1;overflow-y:auto;padding:18px;background:var(--gris-claro);display:flex;flex-direction:column;gap:12px}
+  .cb{max-width:80%;padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.5}
+  .cb.bot{background:#fff;border:1px solid var(--gris-borde);border-bottom-left-radius:4px;align-self:flex-start}
+  .cb.me{background:var(--azul-medio);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+  .chat-quick{display:flex;gap:7px;flex-wrap:wrap;padding:0 18px 10px;background:var(--gris-claro)}
+  .chat-quick button{background:#fff;border:1px solid var(--gris-borde);border-radius:999px;padding:6px 12px;font-size:11.5px;font-weight:600;color:var(--azul-medio);transition:.15s;cursor:pointer}
+  .chat-quick button:hover{background:var(--azul-claro);border-color:var(--azul-medio)}
+  .chat-in{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--gris-borde);background:#fff}
+  .chat-in input{flex:1;height:40px;border:1.5px solid var(--gris-borde);border-radius:999px;padding:0 14px;font-size:13px;font-family:inherit;outline:none}.chat-in input:focus{border-color:var(--azul-medio)}
+  .chat-in button{width:40px;height:40px;border-radius:50%;background:var(--naranja);color:#fff;display:flex;align-items:center;justify-content:center;flex:0 0 40px}.chat-in button:hover{background:#e85f15}
+  .chat-in button svg{width:19px;height:19px;stroke-width:2.2}
+
+  footer{background:var(--azul-oscuro);color:#a8b6d4;padding:46px 0 24px;margin-top:40px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;margin-bottom:34px}
+  .foot-brand .logo-text{color:#fff}
+  .foot-brand p{font-size:13px;color:#9fb3d4;margin:14px 0;max-width:280px;line-height:1.6}
+  .foot-social{display:flex;gap:9px}
+  .foot-social a{width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;transition:.15s}.foot-social a:hover{background:var(--naranja);color:#fff}
+  .foot-social svg{width:18px;height:18px;stroke-width:1.8}
+  .foot-col h4{font-size:13px;font-weight:800;color:#fff;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+  .foot-col a{display:block;font-size:13px;padding:5px 0;color:#a8b6d4;transition:.15s;cursor:pointer}.foot-col a:hover{color:#fff;padding-left:4px}
+  .foot-bot{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;font-size:12px;color:#7e93b4;flex-wrap:wrap;gap:10px}
+  .foot-bot .pay{display:flex;gap:8px}.foot-bot .pay span{background:rgba(255,255,255,.08);padding:4px 10px;border-radius:5px;font-size:10px;font-weight:700;letter-spacing:.3px}
+
+  .badge-iso{display:inline-flex;align-items:center;gap:6px;background:var(--verde-claro);color:var(--verde);font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px}
+  .mt8{margin-top:8px}.mt24{margin-top:24px}
+  #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--azul-oscuro);color:#fff;padding:12px 22px;border-radius:10px;font-size:13px;font-weight:600;z-index:200;opacity:0;pointer-events:none;transition:.25s;box-shadow:var(--sombra-lg)}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(-6px)}
+
+  @media(max-width:1080px){.strip{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(3,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.hero-card{display:none}}
+  @media(max-width:880px){.cat-layout,.cart-layout,.acc-layout,.prod,.track-grid,.tk-layout{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.strip{grid-template-columns:1fr}.filtros,.summary,.acc-side,.new-tk{position:static}.search{display:none}.hero{padding:34px 26px}.hero h1{font-size:26px}.foot-grid{grid-template-columns:1fr 1fr}.table-card .th,.table-card .tr{grid-template-columns:1.5fr 1fr 1fr}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar"><div class="wrap">
+  <div class="tb-left">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg> Córdoba Capital · Cobertura regional + envíos a todo el país</span>
+    <span class="sep">|</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1A19.5 19.5 0 0 1 5 12.8 19.8 19.8 0 0 1 1.9 4.2 2 2 0 0 1 3.9 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L7.6 9.8a16 16 0 0 0 6.6 6.6l1.3-1.4a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"/></svg> 0800 555 2588</span>
+  </div>
+  <div class="tb-right">
+    <a onclick="go('cuenta')">Mi cuenta</a><span class="sep">|</span>
+    <a onclick="go('reclamos')">Centro de ayuda</a><span class="sep">|</span>
+    <a>Constructoras (B2B)</a>
+  </div>
+</div></div>
+
+<!-- HEADER -->
+<header class="hdr"><div class="wrap">
+  <a class="logo" onclick="go('home')">
+    <div class="logo-mark">A</div>
+    <div><div class="logo-text">Alu<span>Tech</span></div><div class="logo-sub">Aberturas de aluminio y PVC</div></div>
+  </a>
+  <div class="search">
+    <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+    <input type="text" placeholder="Buscar ventanas, puertas, portones de aluminio o PVC…" />
+  </div>
+  <div class="hdr-actions">
+    <a class="hbtn" onclick="go('cuenta')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="12" cy="8" r="4"/></svg><span>Mi cuenta</span></a>
+    <a class="hbtn" onclick="go('reclamos')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"/></svg><span>Ayuda</span></a>
+    <a class="hbtn" onclick="go('cart')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span>Carrito</span><span class="badge" id="cartCount">3</span></a>
+  </div>
+</div></header>
+
+<!-- CATEGORÍAS -->
+<nav class="catnav"><div class="wrap">
+  <a class="active" data-nav="home" onclick="go('home')">Inicio</a>
+  <a onclick="go('catalogo')">Ventanas</a>
+  <a onclick="go('catalogo')">Puertas ventanas</a>
+  <a onclick="go('catalogo')">Portones</a>
+  <a onclick="go('catalogo')">Paños fijos</a>
+  <a onclick="go('catalogo')">Bandeas / Ventilación</a>
+  <a onclick="go('catalogo')">Línea Estandarizada</a>
+  <a onclick="go('catalogo')">A medida</a>
+  <a class="all" onclick="go('catalogo')">Ver catálogo →</a>
+</div></nav>
+
+<main>
+
+<!-- ================= HOME ================= -->
+<section id="view-home" class="view active"><div class="wrap">
+  <div class="hero">
+    <div class="hero-txt">
+      <span class="hero-eyebrow"><span class="dot"></span> Fabricación e instalación propia · ISO 9001:2015</span>
+      <h1>Cerramientos de aluminio y PVC de alta gama, hechos a tu medida.</h1>
+      <p>Confort térmico y acústico para tu obra. Pedí presupuesto online, seguí tu pedido en tiempo real y coordiná la instalación en una sola plataforma.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" onclick="go('catalogo')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Explorar catálogo</a>
+        <a class="btn btn-ghost" onclick="go('configurador')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 20v-6M6 20v-4M18 20v-10M3 20h18"/></svg> Configurar a medida</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg> Por qué AluTech</h3>
+      <div class="hc-item"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg></div><div><div class="hc-t">Seguimiento en tiempo real</div><div class="hc-s">Cada etapa: relevamiento, diseño, fabricación e instalación.</div></div></div>
+      <div class="hc-item"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></div><div><div class="hc-t">Instalación profesional</div><div class="hc-s">Instaladores certificados en carpintería de aluminio.</div></div></div>
+      <div class="hc-item"><div class="hc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20M6 14h4"/></svg></div><div><div class="hc-t">Con o sin instalación</div><div class="hc-s">Envíos a todo el país. Tercerizamos medición y transporte.</div></div></div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="s"><div class="s-ico s-azul"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5l-8-3Z"/></svg></div><div><div class="s-t">Garantía de calidad</div><div class="s-s">ISO 9001:2015 · IRAM 11507</div></div></div>
+    <div class="s"><div class="s-ico s-naranja"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><div><div class="s-t">A medida o estandarizadas</div><div class="s-s">Configurador online y catálogo</div></div></div>
+    <div class="s"><div class="s-ico s-verde"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div><div class="s-t">Seguimiento en vivo</div><div class="s-s">Estado del pedido en cada etapa</div></div></div>
+    <div class="s"><div class="s-ico s-amarillo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div><div class="s-t">Pagos flexibles</div><div class="s-s">Transferencia, tarjeta y financiación</div></div></div>
+  </div>
+
+  <div class="sec-head"><div><h2>Lo más vendido</h2><div class="sub">Aberturas de aluminio de línea con instalación incluida</div></div><a onclick="go('catalogo')">Ver todo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+  <div class="grid" id="gridHome"></div>
+
+  <div style="background:linear-gradient(110deg,var(--naranja-claro),#fff6f0);border:1px solid #fbd9c7;border-radius:var(--radio);padding:30px 34px;margin:34px 0;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+    <div>
+      <div style="font-size:12px;color:var(--naranja);font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">¿Necesitás algo único?</div>
+      <h2 style="font-size:22px;font-weight:800;color:var(--azul-oscuro);letter-spacing:-.4px;margin-bottom:6px">Configurá tu abertura a medida en 3 pasos</h2>
+      <p style="font-size:14px;color:var(--gris-sec);max-width:520px">Elegí tipo, medidas, material, cristal y herrajes. Recibí un presupuesto preliminar al instante y coordiná la visita técnica del arquitecto.</p>
+    </div>
+    <a class="btn btn-primary" onclick="go('configurador')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 20v-6M6 20v-4M18 20v-10M3 20h18"/></svg> Ir al configurador</a>
+  </div>
+
+  <div class="sec-head"><div><h2>Línea estandarizada para obras</h2><div class="sub">Medidas predefinidas para acelerar el ciclo de venta · Ideal para constructoras</div></div><a onclick="go('catalogo')">Ver línea estándar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+  <div class="grid" id="gridStd"></div>
+</div></section>
+
+<!-- ================= CATÁLOGO ================= -->
+<section id="view-catalogo" class="view"><div class="wrap">
+  <div class="crumb"><a onclick="go('home')">Inicio</a><span class="sep">/</span><span>Catálogo</span></div>
+  <div class="sec-head"><div><h2>Catálogo de aberturas</h2><div class="sub">Aluminio y PVC · A medida y línea estandarizada</div></div></div>
+  <div class="cat-layout">
+    <aside class="filtros">
+      <h3>Filtros</h3>
+      <div class="f-grp"><h4>Tipo</h4>
+        <label class="f-opt"><input type="checkbox" checked> Ventanas <span class="c">48</span></label>
+        <label class="f-opt"><input type="checkbox"> Puertas ventana <span class="c">22</span></label>
+        <label class="f-opt"><input type="checkbox"> Portones <span class="c">14</span></label>
+        <label class="f-opt"><input type="checkbox"> Paños fijos <span class="c">18</span></label>
+        <label class="f-opt"><input type="checkbox"> Bandeas <span class="c">9</span></label>
+      </div>
+      <div class="f-grp"><h4>Material</h4>
+        <label class="f-opt"><input type="checkbox" checked> Aluminio <span class="c">71</span></label>
+        <label class="f-opt"><input type="checkbox"> PVC <span class="c">40</span></label>
+      </div>
+      <div class="f-grp"><h4>Línea</h4>
+        <label class="f-opt"><input type="checkbox"> A medida <span class="c">63</span></label>
+        <label class="f-opt"><input type="checkbox"> Estandarizada <span class="c">48</span></label>
+      </div>
+      <div class="f-grp"><h4>Ancho (mm)</h4>
+        <div class="f-rng"><input type="number" placeholder="Mín" value="600"><input type="number" placeholder="Máx" value="2400"></div>
+      </div>
+      <div class="f-grp"><h4>Color</h4>
+        <div class="f-clr">
+          <div class="clr sel" style="background:#e8e8e8"></div>
+          <div class="clr" style="background:#2b2b2b"></div>
+          <div class="clr" style="background:#6b4f3a"></div>
+          <div class="clr" style="background:#9b7a52"></div>
+          <div class="clr" style="background:#3a4a5a"></div>
+          <div class="clr" style="background:#7a1f1f"></div>
+        </div>
+      </div>
+      <div class="f-grp"><h4>Cristal</h4>
+        <label class="f-opt"><input type="checkbox"> DVH simple <span class="c">32</span></label>
+        <label class="f-opt"><input type="checkbox"> DVH doble <span class="c">28</span></label>
+        <label class="f-opt"><input type="checkbox"> Templado <span class="c">19</span></label>
+        <label class="f-opt"><input type="checkbox"> Laminado <span class="c">12</span></label>
+      </div>
+      <div class="f-grp"><h4>Instalación</h4>
+        <label class="f-opt"><input type="checkbox" checked> Con instalación <span class="c">85</span></label>
+        <label class="f-opt"><input type="checkbox"> Sin instalación <span class="c">26</span></label>
+      </div>
+    </aside>
+    <div>
+      <div class="cat-toolbar">
+        <div class="r"><b id="resCount">12</b> productos encontrados</div>
+        <div class="ord"><span style="font-size:12.5px;color:var(--gris-sec)">Ordenar:</span>
+          <select><option>Relevancia</option><option>Precio: menor a mayor</option><option>Precio: mayor a menor</option><option>Más vendidos</option><option>Novedades</option></select>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip">Ventanas <span class="x">×</span></span>
+        <span class="chip">Aluminio <span class="x">×</span></span>
+        <span class="chip">Con instalación <span class="x">×</span></span>
+        <span class="chip" style="background:var(--azul-claro);color:var(--azul-medio);border-color:var(--azul-medio)">Limpiar todo</span>
+      </div>
+      <div class="grid" id="gridCatalogo"></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ================= CONFIGURADOR ================= -->
+<section id="view-configurador" class="view"><div class="wrap">
+  <div class="crumb"><a onclick="go('home')">Inicio</a><span class="sep">/</span><span>Configurador a medida</span></div>
+  <div class="sec-head"><div><h2>Configurá tu abertura a medida</h2><div class="sub">Presupuesto preliminar al instante · Validez 7 días · Sujeto a relevamiento técnico</div></div></div>
+  <div style="display:grid;grid-template-columns:1.2fr 380px;gap:24px;align-items:start">
+    <div style="background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);padding:26px">
+      <div class="opt-box"><div class="lbl">Paso 1 · Tipo de abertura <span class="v">Ventana de 2 hojas</span></div>
+        <div class="opt-row cfg" data-cfg="tipo">
+          <div class="opt sel">Ventana 2 hojas</div><div class="opt">Ventana corrediza</div><div class="opt">Puerta ventana</div><div class="opt">Portón levadizo</div><div class="opt">Paño fijo</div><div class="opt">Bandea</div>
+        </div>
+      </div>
+      <div class="opt-box"><div class="lbl">Paso 2 · Material <span class="v">Aluminio — Línea 30 RPT</span></div>
+        <div class="opt-row cfg" data-cfg="mat">
+          <div class="opt sel">Aluminio L30<span class="pr">+ confort térmico</span></div><div class="opt">Aluminio RPT<span class="pr">+ aislación máxima</span></div><div class="opt">PVC reforzado<span class="pr">+ económico</span></div>
+        </div>
+      </div>
+      <div class="opt-box"><div class="lbl">Paso 3 · Medidas <span class="v" id="cfgMed">1200 × 1200 mm</span></div>
+        <div class="med-input">
+          <div class="f"><label>Ancho (mm)</label><div class="in"><input type="number" id="cfgAn" value="1200" min="400" max="3000"><span class="u">mm</span></div></div>
+          <div class="f"><label>Alto (mm)</label><div class="in"><input type="number" id="cfgAl" value="1200" min="400" max="2700"><span class="u">mm</span></div></div>
+        </div>
+      </div>
+      <div class="opt-box"><div class="lbl">Paso 4 · Cristal <span class="v">DVH 4/12/4</span></div>
+        <div class="opt-row cfg" data-cfg="cristal">
+          <div class="opt sel">DVH 4/12/4</div><div class="opt">DVH 6/16/6 Low-E</div><div class="opt">Templado 6mm</div><div class="opt">Laminado 6+6</div>
+        </div>
+      </div>
+      <div class="opt-box"><div class="lbl">Paso 5 · Color / Acabado <span class="v">Blanco</span></div>
+        <div class="opt-row cfg" data-cfg="color">
+          <div class="opt sel">Blanco</div><div class="opt">Negro mate</div><div class="opt">Gris anthracite</div><div class="opt">Madera oscuro</div><div class="opt">Madera claro</div>
+        </div>
+      </div>
+      <div class="opt-box"><div class="lbl">Paso 6 · Herrajes <span class="v">Línea estándar</span></div>
+        <div class="opt-row cfg" data-cfg="herr">
+          <div class="opt sel">Estándar cromado</div><div class="opt">Premium inoxidable</div><div class="opt">Con seguro<span class="pr">+ $18.500</span></div>
+        </div>
+      </div>
+      <div class="opt-box"><div class="lbl">Paso 7 · Instalación <span class="v">Con instalación (Córdoba)</span></div>
+        <div class="opt-row cfg" data-cfg="inst">
+          <div class="opt sel">Con instalación</div><div class="opt">Sin instalación (envío)</div>
+        </div>
+      </div>
+    </div>
+    <div style="position:sticky;top:130px;display:flex;flex-direction:column;gap:16px">
+      <div style="background:#fff;border:1px solid var(--gris-borde);border-radius:var(--radio);padding:22px">
+        <div style="height:240px;background:linear-gradient(135deg,#eef3fb,#dbe6f4);border-radius:var(--radio-sm);display:flex;align-items:center;justify-content:center;margin-bottom:16px"><div class="ab" style="width:140px;height:180px" id="cfgPreview"></div></div>
+        <div style="font-size:11px;color:var(--gris-sec);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Presupuesto preliminar</div>
+        <div style="font-size:28px;font-weight:800;color:var(--azul-oscuro);letter-spacing:-.4px" id="cfgPrice">$ 284.500</div>
+        <div style="font-size:12px;color:var(--gris-sec);margin-bottom:14px">Validez 7 días · Sujeto a relevamiento técnico del arquitecto</div>
+        <a class="btn btn-primary btn-block" onclick="addConfigured()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg> Agregar al carrito</a>
+        <a class="btn btn-outline btn-block mt8" onclick="toast('Presupuesto preliminar enviado a tu email (demo)')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg> Enviar por email</a>
+      </div>
+      <div style="background:var(--azul-claro);border-radius:var(--radio);padding:16px 18px;font-size:12.5px;color:var(--azul-oscuro);line-height:1.6">
+        <b>¿Cómo seguimos?</b><br>
+        Al confirmar se abona el <b>anticipo de relevamiento</b> (monto fijo). Un arquitecto visita tu obra, toma medidas con escáner LIDAR y generamos el <b>presupuesto técnico definitivo</b>. Luego se abona el 50% para iniciar fabricación.
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ================= DETALLE PRODUCTO ================= -->
+<section id="view-producto" class="view"><div class="wrap">
+  <div class="crumb"><a onclick="go('home')">Inicio</a><span class="sep">/</span><a onclick="go('catalogo')">Catálogo</a><span class="sep">/</span><span id="crumbProd">Ventana de aluminio</span></div>
+  <div class="prod">
+    <div>
+      <div class="prod-main-img"><div class="ab" id="prodImg"></div></div>
+      <div class="prod-thumbs">
+        <div class="t sel" onclick="setThumb(this,'ventana2')"><div class="ab" data-ab="ventana2"></div></div>
+        <div class="t" onclick="setThumb(this,'ventanacorr')"><div class="ab" data-ab="ventanacorr"></div></div>
+        <div class="t" onclick="setThumb(this,'puertaventana')"><div class="ab" data-ab="puertaventana"></div></div>
+        <div class="t" onclick="setThumb(this,'porton')"><div class="ab" data-ab="porton"></div></div>
+      </div>
+    </div>
+    <div class="prod-info">
+      <div class="prod-cat" id="prodCat">Aluminio · Línea 30 RPT</div>
+      <h1 id="prodTitle">Ventana de 2 hojas — Aluminio RPT DVH</h1>
+      <div class="prod-stars"><span class="stars">★★★★★</span><span>4.8 · 126 reseñas</span><span>·</span><span class="badge-iso"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="12" height="12"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg> ISO 9001</span></div>
+      <div class="prod-price"><span class="now" id="prodPrice">$ 284.500</span><span class="old">$ 318.000</span><span class="off">-11%</span><span class="cuotas">12 cuotas sin interés</span></div>
+
+      <div class="opt-box"><div class="lbl">Material <span class="v">Aluminio RPT</span></div>
+        <div class="opt-row"><div class="opt sel">Aluminio RPT</div><div class="opt">Aluminio L30</div><div class="opt">PVC reforzado</div></div>
+      </div>
+      <div class="opt-box"><div class="lbl">Medidas <span class="v">1200 × 1200 mm</span></div>
+        <div class="med-input">
+          <div class="f"><label>Ancho (mm)</label><div class="in"><input type="number" value="1200"><span class="u">mm</span></div></div>
+          <div class="f"><label>Alto (mm)</label><div class="in"><input type="number" value="1200"><span class="u">mm</span></div></div>
+        </div>
+        <div style="font-size:11.5px;color:var(--gris-sec);margin-top:8px">Medidas personalizadas dentro del rango. Validación final tras relevamiento técnico.</div>
+      </div>
+      <div class="opt-box"><div class="lbl">Cristal <span class="v">DVH 4/12/4</span></div>
+        <div class="opt-row"><div class="opt sel">DVH 4/12/4</div><div class="opt">DVH 6/16/6 Low-E</div><div class="opt">Templado</div></div>
+      </div>
+      <div class="opt-box"><div class="lbl">Color <span class="v">Blanco</span></div>
+        <div class="opt-row"><div class="opt sel">Blanco</div><div class="opt">Negro mate</div><div class="opt">Gris anthracite</div><div class="opt">Madera oscuro</div></div>
+      </div>
+
+      <div class="qty-row">
+        <div class="qty"><button>−</button><input type="text" value="2" readonly><button>+</button></div>
+        <span style="font-size:12.5px;color:var(--verde);font-weight:700;display:flex;align-items:center;gap:5px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> En producción · 18 días hábiles</span>
+      </div>
+
+      <div class="prod-actions">
+        <a class="btn btn-primary" onclick="addToCart()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg> Agregar al carrito</a>
+        <a class="btn btn-light" onclick="go('configurador')">Personalizar más</a>
+        <a class="btn btn-ic" title="Favorito" onclick="toggleFav(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg></a>
+      </div>
+
+      <div class="prod-benefits">
+        <div class="pb azul"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg> Transferencia o tarjeta · Anticipo + 50%</div>
+        <div class="pb verde"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> Seguimiento en tiempo real</div>
+        <div class="pb naranja"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg> Instalación certificada</div>
+        <div class="pb amarillo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg> Ficha técnica digital</div>
+      </div>
+
+      <div class="prod-tabs">
+        <div class="tabs-nav">
+          <button class="active" onclick="tab(this,0)">Descripción</button>
+          <button onclick="tab(this,1)">Especificaciones</button>
+          <button onclick="tab(this,2)">Instalación y entrega</button>
+          <button onclick="tab(this,3)">Opiniones</button>
+        </div>
+        <div class="tab-pane active">
+          <p>Ventana de 2 hojas batientes en aluminio con Rotura de Puente Térmico (RPT), diseñada para garantizar el máximo confort térmico y acústico en proyectos residenciales de alta gama y obras corporativas.</p>
+          <h4>Características principales</h4>
+          <ul>
+            <li>Perfil de aluminio con cámara de poliamida de 24mm (RPT) — aislación térmica superior.</li>
+            <li>Vidrio doble (DVH 4/12/4) con cámara deshumidificada para baja transmitancia.</li>
+            <li>Hojas con cierre perimetral y junta doble EPDM para estanqueidad al aire y agua.</li>
+            <li>Herrajes de acero inoxidable con sistema de bloqueo multipunto.</li>
+            <li>Cumple norma IRAM 11507-1 (ventanas exteriores) e IRAM 11507-4 (aislación térmica).</li>
+          </ul>
+        </div>
+        <div class="tab-pane">
+          <table class="spec-table">
+            <tr><td>Material del marco</td><td>Aluminio RPT — cámara poliamida 24mm</td></tr>
+            <tr><td>Perfil</td><td>Línea 30 — 60mm</td></tr>
+            <tr><td>Cristal</td><td>DVH 4/12/4 — Temp float</td></tr>
+            <tr><td>Transmitancia U</td><td>1,7 W/m²K</td></tr>
+            <tr><td>Estanqueidad aire</td><td>Clase 4 (IRAM 11503)</td></tr>
+            <tr><td>Estanqueidad agua</td><td>Clase 9A (IRAM 11504)</td></tr>
+            <tr><td>Herrajes</td><td>Acero inoxidable — cierre multipunto</td></tr>
+            <tr><td>Color</td><td>Lacado electrostático (blanco)</td></tr>
+            <tr><td>Garantía</td><td>5 años marco · 2 años herrajes</td></tr>
+          </table>
+        </div>
+        <div class="tab-pane">
+          <h4>Entrega e instalación</h4>
+          <ul>
+            <li><b>Con instalación (Córdoba y alrededores):</b> coordinamos fecha con 24 hs de antelación. Instaladores certificados en carpintería de aluminio.</li>
+            <li><b>Sin instalación (resto del país):</b> envío por transportista asociado. Tercerizamos la toma de medidas con arquitectos locales.</li>
+            <li>Lead-time estimado: 18 días hábiles desde confirmación del pago del 50%.</li>
+            <li>Las incidencias en obra se registran en ficha técnica digital y se atienden vía sistema de tickets.</li>
+          </ul>
+          <h4>Medios de pago</h4>
+          <p>Transferencia bancaria · Tarjeta de crédito (Visa, Mastercard, Naranja) · Financiación hasta 12 cuotas. Se requiere anticipo de relevamiento y seña del 50% para iniciar fabricación.</p>
+        </div>
+        <div class="tab-pane">
+          <div style="display:flex;gap:20px;align-items:flex-start;margin-bottom:18px">
+            <div style="text-align:center;flex:0 0 110px">
+              <div style="font-size:42px;font-weight:800;color:var(--azul-oscuro);line-height:1">4.8</div>
+              <div class="stars" style="font-size:16px">★★★★★</div>
+              <div style="font-size:11px;color:var(--gris-sec);margin-top:4px">126 reseñas</div>
+            </div>
+            <div style="flex:1">
+              <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;margin-bottom:5px"><span style="width:30px;color:var(--gris-sec)">5★</span><div style="flex:1;height:6px;background:var(--gris-borde);border-radius:3px;overflow:hidden"><div style="width:78%;height:100%;background:var(--amarillo)"></div></div><span style="width:30px;color:var(--gris-sec)">98</span></div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;margin-bottom:5px"><span style="width:30px;color:var(--gris-sec)">4★</span><div style="flex:1;height:6px;background:var(--gris-borde);border-radius:3px;overflow:hidden"><div style="width:16%;height:100%;background:var(--amarillo)"></div></div><span style="width:30px;color:var(--gris-sec)">21</span></div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;margin-bottom:5px"><span style="width:30px;color:var(--gris-sec)">3★</span><div style="flex:1;height:6px;background:var(--gris-borde);border-radius:3px;overflow:hidden"><div style="width:4%;height:100%;background:var(--amarillo)"></div></div><span style="width:30px;color:var(--gris-sec)">5</span></div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:12.5px"><span style="width:30px;color:var(--gris-sec)">1-2★</span><div style="flex:1;height:6px;background:var(--gris-borde);border-radius:3px;overflow:hidden"><div style="width:2%;height:100%;background:var(--amarillo)"></div></div><span style="width:30px;color:var(--gris-sec)">2</span></div>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--gris-borde);padding-top:14px">
+            <div style="font-size:13px;font-weight:700;color:var(--azul-oscuro);margin-bottom:3px">"Excelente calidad y aislación"</div>
+            <div style="font-size:12px;color:var(--gris-sec);margin-bottom:6px">Mariana T. · Obra en Villa Allende · 12 mar 2026</div>
+            <div style="font-size:13px;color:var(--gris-texto)">Instalaron 8 ventanas RPT en una obra nueva. La aislación acústica es notable y el seguimiento del pedido online me mantuvo tranquila durante toda la fabricación.</div>
+            <div style="margin-top:14px;font-size:13px;font-weight:700;color:var(--azul-oscuro);margin-bottom:3px">"Puntuales y prolijos"</div>
+            <div style="font-size:12px;color:var(--gris-sec);margin-bottom:6px">Constructora Vértice · 28 feb 2026</div>
+            <div style="font-size:13px;color:var(--gris-texto)">Pedimos 24 ventanas estandarizadas para un emprendimiento. Cumplieron los plazos y los instaladores conocen la normativa IRAM al dedillo.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ================= CARRITO ================= -->
+<section id="view-cart" class="view"><div class="wrap">
+  <div class="crumb"><a onclick="go('home')">Inicio</a><span class="sep">/</span><span>Carrito</span></div>
+  <div class="sec-head"><div><h2>Carrito de compra</h2><div class="sub">3 productos · Total estimado</div></div><a class="btn btn-primary" onclick="go('checkout')">Continuar a pago <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+  <div class="cart-layout">
+    <div class="cart-items">
+      <div class="cart-item"><div class="cart-img"><div class="ab" data-ab="ventana2"></div></div><div class="cart-it-info"><div class="t">Ventana de 2 hojas — Aluminio RPT DVH</div><div class="m"><span>1200 × 1200 mm</span><span>·</span><span>Blanco</span><span>·</span><span>Con instalación</span></div></div><div class="cart-it-qty"><div class="qty"><button>−</button><input value="2" readonly><button>+</button></div></div><div class="cart-it-price"><div class="p">$ 569.000</div><div class="rm">Quitar</div></div></div>
+      <div class="cart-item"><div class="cart-img"><div class="ab" data-ab="puertaventana"></div></div><div class="cart-it-info"><div class="t">Puerta ventana corrediza — Aluminio L30</div><div class="m"><span>2100 × 900 mm</span><span>·</span><span>Gris anthracite</span><span>·</span><span>Con instalación</span></div></div><div class="cart-it-qty"><div class="qty"><button>−</button><input value="1" readonly><button>+</button></div></div><div class="cart-it-price"><div class="p">$ 412.300</div><div class="rm">Quitar</div></div></div>
+      <div class="cart-item"><div class="cart-img"><div class="ab" data-ab="porton"></div></div><div class="cart-it-info"><div class="t">Portón levadizo — Aluminio reforzado</div><div class="m"><span>3000 × 2500 mm</span><span>·</span><span>Negro mate</span><span>·</span><span>Sin instalación (envío)</span></div></div><div class="cart-it-qty"><div class="qty"><button>−</button><input value="1" readonly><button>+</button></div></div><div class="cart-it-price"><div class="p">$ 1.285.000</div><div class="rm">Quitar</div></div></div>
+    </div>
+    <div class="summary">
+      <h3>Resumen</h3>
+      <div class="sum-row"><span>Subtotal (4 unidades)</span><span class="v">$ 2.266.300</span></div>
+      <div class="sum-row"><span>Instalación incluida</span><span class="v">$ 96.000</span></div>
+      <div class="sum-row discount"><span>Descuento constructora B2B</span><span class="v">- $ 113.315</span></div>
+      <div class="sum-row"><span>Envío (fuera de región)</span><span class="v">A coordinar</span></div>
+      <div class="sum-cupon"><input placeholder="Código de descuento"><button>Aplicar</button></div>
+      <div class="sum-total"><span class="l">Total estimado</span><span class="v">$ 2.248.985</span></div>
+      <a class="btn btn-primary btn-block" onclick="go('checkout')">Continuar a pago</a>
+      <div style="font-size:11.5px;color:var(--gris-sec);margin-top:12px;line-height:1.5">Al confirmar el pedido se solicita <b>anticipo de relevamiento</b> (monto fijo). El saldo del 50% se abona tras el presupuesto técnico definitivo.</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ================= CHECKOUT ================= -->
+<section id="view-checkout" class="view"><div class="wrap">
+  <div class="crumb"><a onclick="go('home')">Inicio</a><span class="sep">/</span><a onclick="go('cart')">Carrito</a><span class="sep">/</span><span>Finalizar compra</span></div>
+  <div class="sec-head"><div><h2>Finalizar compra</h2><div class="sub">Confirmá datos de entrega y pago</div></div></div>
+  <div class="steps">
+    <div class="step done"><span class="n">✓</span> Carrito</div><div class="step-line done"></div>
+    <div class="step done"><span class="n">✓</span> Datos</div><div class="step-line done"></div>
+    <div class="step active"><span class="n">3</span> Pago</div><div class="step-line"></div>
+    <div class="step"><span class="n">4</span> Confirmación</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start">
+    <div>
+      <div class="form-card"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg> Datos de entrega</h3>
+        <div class="form-grid">
+          <div class="field"><label>Nombre y apellido</label><input value="Lucía Hernández"></div>
+          <div class="field"><label>Teléfono</label><input value="+54 9 351 555 1234"></div>
+          <div class="field f-full"><label>Email</label><input value="lucia.hernandez@email.com"></div>
+          <div class="field f-full"><label>Dirección de obra</label><input value="Av. Colón 2450, dpto. 3B"></div>
+          <div class="field"><label>Ciudad</label><input value="Córdoba Capital"></div>
+          <div class="field"><label>Provincia</label><select><option>Córdoba</option><option>Santa Fe</option><option>Buenos Aires</option></select></div>
+          <div class="field f-full"><label>Notas para la entrega / instalación</label><input value="Obra en planta baja. Horario de 9 a 13 hs. Contacto en obra: Diego."></div>
+        </div>
+      </div>
+      <div class="form-card"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg> Método de pago</h3>
+        <div class="pay-method">
+          <label class="pay-opt sel"><input type="radio" name="pay" checked><div class="pp-ico pp-azul">TR</div><div><div class="pp-t">Transferencia bancaria</div><div class="pp-s">CBU / CBU alias · Confirmación en 24 hs hábiles</div></div></label>
+          <label class="pay-opt"><input type="radio" name="pay"><div class="pp-ico pp-naranja">TC</div><div><div class="pp-t">Tarjeta de crédito</div><div class="pp-s">Visa · Mastercard · Naranja · Hasta 12 cuotas sin interés</div></div></label>
+          <label class="pay-opt"><input type="radio" name="pay"><div class="pp-ico pp-verde">MP</div><div><div class="pp-t">Mercado Pago</div><div class="pp-s">Pagás con tu dinero disponible o tarjeta vinculada</div></div></label>
+        </div>
+        <div class="pago-info">
+          <b>Estructura de pagos del proceso:</b><br>
+          1. <b>Anticipo de relevamiento</b> (monto fijo) — se abona ahora para coordinar la visita del arquitecto.<br>
+          2. <b>Seña del 50%</b> — se abona tras el presupuesto técnico definitivo, para iniciar fabricación.<br>
+          3. <b>Saldo final</b> — al recibir/instalar la abertura.
+        </div>
+      </div>
+      <div class="form-card"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg> Datos de facturación</h3>
+        <div class="form-grid">
+          <div class="field"><label>Tipo</label><select><option>Consumidor final</option><option>Monotributo</option><option>Responsable inscripto</option></select></div>
+          <div class="field"><label>DNI / CUIT</label><input value="27.345.678"></div>
+        </div>
+      </div>
+    </div>
+    <div class="summary" style="position:sticky;top:130px">
+      <h3>Tu pedido</h3>
+      <div class="sum-row"><span>Ventana 2 hojas RPT ×2</span><span class="v">$ 569.000</span></div>
+      <div class="sum-row"><span>Puerta ventana L30 ×1</span><span class="v">$ 412.300</span></div>
+      <div class="sum-row"><span>Portón levadizo ×1</span><span class="v">$ 1.285.000</span></div>
+      <div class="sum-row"><span>Instalación</span><span class="v">$ 96.000</span></div>
+      <div class="sum-row discount"><span>Descuento B2B</span><span class="v">- $ 113.315</span></div>
+      <div class="sum-row"><span>Anticipo relevamiento</span><span class="v">$ 45.000</span></div>
+      <div class="sum-total"><span class="l">A abonar ahora</span><span class="v">$ 45.000</span></div>
+      <div style="font-size:11.5px;color:var(--gris-sec);margin-bottom:14px">Saldo de fabricación (50%) y final: tras relevamiento e instalación.</div>
+      <a class="btn btn-primary btn-block" onclick="confirmOrder()">Confirmar y abonar anticipo</a>
+      <div style="font-size:11.5px;color:var(--gris-sec);margin-top:12px;display:flex;align-items:center;gap:6px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Pago seguro · Datos protegidos</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ================= MI CUENTA ================= -->
+<section id="view-cuenta" class="view"><div class="wrap">
+  <div class="crumb"><a onclick="go('home')">Inicio</a><span class="sep">/</span><span>Mi cuenta</span></div>
+  <div class="acc-layout">
+    <aside class="acc-side">
+      <div class="acc-user"><div class="acc-avatar">LH</div><div><div class="n">Lucía Hernández</div><div class="e">lucia.hernandez@email.com</div><div class="tag">Cliente B2B · Constructora</div></div></div>
+      <div class="acc-nav">
+        <button class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg> Resumen</button>
+        <button onclick="go('pedidos')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg> Mis pedidos</button>
+        <button onclick="go('reclamos')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"/></svg> Mis reclamos</button>
+        <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg> Favoritos</button>
+        <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg> Métodos de pago</button>
+        <div class="sep"></div>
+        <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5l-8-3Z"/></svg> Datos de empresa</button>
+        <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.65 1.65 0 0 0-1.8-.3 1.65 1.65 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.65 1.65 0 0 0-1-1.5 1.65 1.65 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.65 1.65 0 0 0 .3-1.8 1.65 1.65 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1a1.65 1.65 0 0 0 1.5-1 1.65 1.65 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.65 1.65 0 0 0 1.8.3H9a1.65 1.65 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.65 1.65 0 0 0 1 1.5 1.65 1.65 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.65 1.65 0 0 0-.3 1.8V9a1.65 1.65 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.65 1.65 0 0 0-1.5 1Z"/></svg> Configuración</button>
+        <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg> Cerrar sesión</button>
+      </div>
+    </aside>
+    <div>
+      <div class="acc-head"><div><h1>Hola, Lucía</h1><div class="sub">Resumen de tu actividad en AluTech</div></div><a class="btn btn-primary btn-sm" onclick="go('catalogo')">Nuevo pedido</a></div>
+      <div class="stats">
+        <div class="stat"><div class="lbl">Pedidos activos</div><div class="num">3</div><div class="delta up">En producción</div></div>
+        <div class="stat"><div class="lbl">Pedidos totales</div><div class="num">14</div><div class="delta up">+ 2 este mes</div></div>
+        <div class="stat"><div class="lbl">Reclamos abiertos</div><div class="num">1</div><div class="delta dn">En proceso</div></div>
+        <div class="stat"><div class="lbl">Satisfacción (NPS)</div><div class="num">9.2</div><div class="delta up">Promotor</div></div>
+      </div>
+      <div class="acc-head" style="margin-top:6px"><h1 style="font-size:18px">Pedidos recientes</h1><a style="font-size:13px;font-weight:700;color:var(--azul-medio);cursor:pointer" onclick="go('pedidos')">Ver todos →</a></div>
+      <div class="table-card">
+        <div class="th"><div>Pedido</div><div>Fecha</div><div>Total</div><div>Estado</div><div>Entrega est.</div><div>Acción</div></div>
+        <div class="tr"><div class="oid">#AT-2026-0418<small>3 unidades</small></div><div>12 jun 2026</div><div>$ 1.285.000</div><div><span class="st st-fab"><span class="d"></span>Fabricación</span></div><div>02 jul 2026</div><div class="act" onclick="go('seguimiento')">Seguir →</div></div>
+        <div class="tr"><div class="oid">#AT-2026-0392<small>8 ventanas RPT</small></div><div>28 may 2026</div><div>$ 2.276.000</div><div><span class="st st-ins"><span class="d"></span>Instalación</span></div><div>22 jun 2026</div><div class="act" onclick="go('seguimiento')">Seguir →</div></div>
+        <div class="tr"><div class="oid">#AT-2026-0371<small>Portón + 2 PV</small></div><div>03 may 2026</div><div>$ 1.842.500</div><div><span class="st st-fin"><span class="d"></span>Finalizado</span></div><div>24 may 2026</div><div class="act">Ficha →</div></div>
+      </div>
+      <div class="form-card"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg> Novedades y beneficios B2B</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div style="background:var(--azul-claro);border-radius:10px;padding:14px"><div style="font-size:12px;color:var(--azul-medio);font-weight:800;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px">Catálogo estandarizado</div><div style="font-size:13.5px;color:var(--azul-oscuro);font-weight:700;line-height:1.4">Nuevo: línea de aberturas con medidas predefinidas para acelerar tus obras recurrentes.</div></div>
+          <div style="background:var(--naranja-claro);border-radius:10px;padding:14px"><div style="font-size:12px;color:var(--naranja);font-weight:800;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px">Beneficio fidelidad</div><div style="font-size:13.5px;color:var(--azul-oscuro);font-weight:700;line-height:1.4">Como cliente de confianza, se te exime el anticipo de relevamiento en el próximo proyecto.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ================= PEDIDOS ================= -->
+<section id="view-pedidos" class="view"><div class="wrap">
+  <div class="crumb"><a onclick="go('home')">Inicio</a><span class="sep">/</span><a onclick="go('cuenta')">Mi cuenta</a><span class="sep">/</span><span>Mis pedidos</span></div>
+  <div class="acc-head"><div><h1>Mis pedidos</h1><div class="sub">Historial completo y estados en tiempo real</div></div>
+    <div style="display:flex;gap:8px">
+      <select style="height:36px;border:1.5px solid var(--gris-borde);border-radius:8px;padding:0 10px;font-size:13px;background:#fff"><option>Todos los estados</option><option>En fabricación</option><option>En instalación</option><option>Finalizado</option></select>
+      <input style="height:36px;border:1.5px solid var(--gris-borde);border-radius:8px;padding:0 12px;font-size:13px" placeholder="Buscar por N° de obra">
+    </div>
+  </div>
+  <div class="table-card">
+    <div class="th"><div>Pedido</div><div>Fecha</div><div>Total</div><div>Estado</div><div>Entrega est.</div><div>Acción</div></div>
+    <div class="tr"><div class="oid">#AT-2026-0418<small>Obra N° 418 · Portón levadizo</small></div><div>12 jun 2026</div><div>$ 1.285.000</div><div><span class="st st-fab"><span class="d"></span>Fabricación</span></div><div>02 jul 2026</div><div class="act" onclick="go('seguimiento')">Seguir →</div></div>
+    <div class="tr"><div class="oid">#AT-2026-0392<small>Obra N° 392 · 8 ventanas RPT</small></div><div>28 may 2026</div><div>$ 2.276.000</div><div><span class="st st-ins"><span class="d"></span>Instalación</span></div><div>22 jun 2026</div><div class="act" onclick="go('seguimiento')">Seguir →</div></div>
+    <div class="tr"><div class="oid">#AT-2026-0371<small>Obra N° 371 · Portón + 2 PV</small></div><div>03 may 2026</div><div>$ 1.842.500</div><div><span class="st st-fin"><span class="d"></span>Finalizado</span></div><div>24 may 2026</div><div class="act">Ficha →</div></div>
+    <div class="tr"><div class="oid">#AT-2026-0345<small>Obra N° 345 · 6 ventanas estandarizadas</small></div><div>14 abr 2026</div><div>$ 1.548.000</div><div><span class="st st-fin"><span class="d"></span>Finalizado</span></div><div>06 may 2026</div><div class="act">Ficha →</div></div>
+    <div class="tr"><div class="oid">#AT-2026-0312<small>Obra N° 312 · 4 paños fijos DVH</small></div><div>02 mar 2026</div><div>$ 986.400</div><div><span class="st st-fin"><span class="d"></span>Finalizado</span></div><div>20 mar 2026</div><div class="act">Ficha →</div></div>
+  </div>
+</div></section>
+
+<!-- ================= SEGUIMIENTO ================= -->
+<section id="view-seguimiento" class="view"><div class="wrap">
+  <div class="crumb"><a onclick="go('home')">Inicio</a><span class="sep">/</span><a onclick="go('cuenta')">Mi cuenta</a><span class="sep">/</span><a onclick="go('pedidos')">Mis pedidos</a><span class="sep">/</span><span>Seguimiento #AT-2026-0418</span></div>
+  <div class="track-wrap">
+    <div class="track-head">
+      <div class="l"><h1>Pedido #AT-2026-0418</h1><div class="d">Obra N° 418 · Portón levadizo reforzado · Av. Colón 2450, Córdoba</div></div>
+      <div class="r"><div class="eta">Entrega estimada</div><div class="etav">02 jul 2026</div><div class="etad">En plazo · 18 días restantes</div></div>
+    </div>
+    <div class="track-grid">
+      <div class="timeline">
+        <div class="tl-step done"><div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 12 2 2 4-4"/></svg></div><div class="ts">12 jun 2026 · 09:42</div><div class="tt">Pedido confirmado</div><div class="td">Pago de anticipo de relevamiento acreditado. Se generó el <b>N° de obra 418</b>.<div class="det"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg> Transferencia</span><span>$ 45.000</span></div></div></div>
+        <div class="tl-step done"><div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 12 2 2 4-4"/></svg></div><div class="ts">14 jun 2026 · 11:15</div><div class="tt">Relevamiento técnico</div><div class="td">El arquitecto Diego R. realizó la visita con escáner LIDAR. Medidas tomadas y cargadas al sistema.<div class="det"><span>Arq. Diego R.</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg> Medidas validadas</span></div></div></div>
+        <div class="tl-step done"><div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 12 2 2 4-4"/></svg></div><div class="ts">16 jun 2026 · 16:30</div><div class="tt">Diseño técnico (AutoCAD)</div><div class="td">Modelado en Revit + LogiKal. Explosión de materiales enviada a Compras.<div class="det"><span>Planos cargados</span><span>BOM generado</span></div></div></div>
+        <div class="tl-step done"><div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m9 12 2 2 4-4"/></svg></div><div class="ts">17 jun 2026 · 10:08</div><div class="tt">Presupuesto técnico definitivo</div><div class="td">Presupuesto definitivo confirmado y pago del 50% acreditado. Inicia fabricación.<div class="det"><span>Pago 50%: $ 642.500</span></div></div></div>
+        <div class="tl-step active"><div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v20M2 12h20"/></svg></div><div class="ts">En curso · desde 18 jun 2026</div><div class="tt">Fabricación</div><div class="td">Corte y ensamblado del portón en planta. Próximo: control de calidad y cotejo.<div class="det"><span>Avance 45%</span><span>Responsable: Planta Pque. Industrial</span></div></div></div>
+        <div class="tl-step pending"><div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 12 2 2 4-4"/></svg></div><div class="ts">Estimado 28 jun 2026</div><div class="tt">Control de calidad y cotejo</div><div class="td">Comparación de aberturas terminadas contra especificaciones técnicas.</div></div>
+        <div class="tl-step pending"><div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div class="ts">Estimado 01 jul 2026</div><div class="tt">Coordinación de entrega</div><div class="td">Despacho con flota propia. Coordinación con 24 hs de antelación.</div></div>
+        <div class="tl-step pending"><div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div><div class="ts">Estimado 02 jul 2026</div><div class="tt">Instalación en obra</div><div class="td">Instaladores certificados concurren al domicilio pactado. Se registra conformidad del cliente.</div></div>
+      </div>
+      <div>
+        <div class="ts-card"><h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg> Agenda de instalación</h4>
+          <div class="ts-row"><span class="l">Fecha sugerida</span><span class="v">02 jul 2026</span></div>
+          <div class="ts-row"><span class="l">Franja horaria</span><span class="v">09:00 — 13:00</span></div>
+          <div class="ts-row"><span class="l">Equipo</span><span class="v">2 instaladores</span></div>
+          <div class="agenda-slots" style="margin-top:12px">
+            <div class="slot" onclick="pickSlot(this)"><div class="h">09:00</div><div class="d">2 jul</div></div>
+            <div class="slot sel" onclick="pickSlot(this)"><div class="h">10:30</div><div class="d">2 jul</div></div>
+            <div class="slot" onclick="pickSlot(this)"><div class="h">14:00</div><div class="d">2 jul</div></div>
+            <div class="slot" onclick="pickSlot(this)"><div class="h">09:00</div><div class="d">3 jul</div></div>
+            <div class="slot" onclick="pickSlot(this)"><div class="h">11:00</div><div class="d">3 jul</div></div>
+            <div class="slot" onclick="pickSlot(this)"><div class="h">15:30</div><div class="d">3 jul</div></div>
+          </div>
+          <a class="btn btn-primary btn-block mt8 btn-sm" onclick="toast('Turno de instalación confirmado (demo)')">Confirmar turno</a>
+        </div>
+        <div class="ts-card"><h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg> Ficha técnica digital</h4>
+          <div class="ficha">
+            <div class="ficha-row"><span class="l">Tipo</span><span class="v">Portón levadizo</span></div>
+            <div class="ficha-row"><span class="l">Material</span><span class="v">Aluminio reforzado</span></div>
+            <div class="ficha-row"><span class="l">Medidas finales</span><span class="v">2995 × 2480 mm</span></div>
+            <div class="ficha-row"><span class="l">Cristal</span><span class="v">— (ciego)</span></div>
+            <div class="ficha-row"><span class="l">Herrajes</span><span class="v">Premium inoxidable</span></div>
+            <div class="ficha-row"><span class="l">Color</span><span class="v">Negro mate</span></div>
+            <div class="ficha-row"><span class="l">N° de obra</span><span class="v">418</span></div>
+          </div>
+        </div>
+        <div class="ts-card"><h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg> Pagos</h4>
+          <div class="ts-row"><span class="l">Anticipo relevamiento</span><span class="v">$ 45.000 ✓</span></div>
+          <div class="ts-row"><span class="l">Seña 50% fabricación</span><span class="v">$ 642.500 ✓</span></div>
+          <div class="ts-row"><span class="l">Saldo final</span><span class="v">Pendiente</span></div>
+          <a class="btn btn-outline btn-block btn-sm mt8" onclick="go('reclamos')">Descargar factura</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ================= RECLAMOS ================= -->
+<section id="view-reclamos" class="view"><div class="wrap">
+  <div class="crumb"><a onclick="go('home')">Inicio</a><span class="sep">/</span><a onclick="go('cuenta')">Mi cuenta</a><span class="sep">/</span><span>Centro de ayuda</span></div>
+  <div class="sec-head"><div><h2>Centro de ayuda y reclamos</h2><div class="sub">Sistema de tickets centralizado con historial de usuario</div></div></div>
+  <div class="tk-layout">
+    <div class="tk-list">
+      <div class="tk-item" onclick="toggleConvo(this)">
+        <div class="th-row"><div class="tkid">Ticket #TK-2087</div><span class="tkst st-proceso">En proceso</span></div>
+        <div class="tts">Ruido en hoja de ventana RPT al abrir</div>
+        <div class="tmeta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> 15 jun 2026</span><span>Pedido #AT-2026-0392</span><span>2 mensajes</span></div>
+        <div class="tk-convo" style="display:none">
+          <div class="msg"><div class="who cli">Cliente · 15 jun, 14:20</div>Al abrir la hoja de la ventana hace un roce en el borde superior. Obra Villa Allende.</div>
+          <div class="msg"><div class="who">Soporte AluTech · 15 jun, 16:05</div>Hola Lucía, agendamos una visita de ajuste para el 18/06. El instalador revisará la escuadra y los herrajes. Ticket derivado al área técnica.</div>
+        </div>
+      </div>
+      <div class="tk-item" onclick="toggleConvo(this)">
+        <div class="th-row"><div class="tkid">Ticket #TK-2051</div><span class="tkst st-resuelto">Resuelto</span></div>
+        <div class="tts">Demora en coordinación de entrega</div>
+        <div class="tmeta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> 02 may 2026</span><span>Pedido #AT-2026-0371</span><span>3 mensajes</span></div>
+        <div class="tk-convo" style="display:none">
+          <div class="msg"><div class="who cli">Cliente · 02 may, 10:11</div>El transportista no confirmó la fecha de entrega del portón.</div>
+          <div class="msg"><div class="who">Soporte AluTech · 02 may, 11:40</div>Coordinamos con flota: entrega reprogramada al 06/05. Pedimos disculpas por la demora.</div>
+          <div class="msg"><div class="who cli">Cliente · 06 may, 18:00</div>Entregado correctamente. Gracias.</div>
+        </div>
+      </div>
+      <div class="tk-item" onclick="toggleConvo(this)">
+        <div class="th-row"><div class="tkid">Ticket #TK-1998</div><span class="tkst st-resuelto">Resuelto</span></div>
+        <div class="tts">Consulta sobre garantía de herrajes</div>
+        <div class="tmeta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> 18 abr 2026</span><span>1 mensaje</span></div>
+        <div class="tk-convo" style="display:none">
+          <div class="msg"><div class="who cli">Cliente · 18 abr, 09:30</div>¿La garantía de herrajes cubre el cierre multipunto?</div>
+          <div class="msg"><div class="who">Soporte AluTech · 18 abr, 10:15</div>Sí, los herrajes tienen 2 años de garantía incluyendo el cierre multipunto. Presentá la ficha técnica del pedido.</div>
+        </div>
+      </div>
+    </div>
+    <div class="new-tk">
+      <h3>Abrir nuevo reclamo</h3>
+      <div class="field"><label style="font-size:12px;color:var(--gris-sec);font-weight:600;display:block;margin-bottom:5px">Asunto</label><input style="width:100%;height:40px;border:1.5px solid var(--gris-borde);border-radius:9px;padding:0 12px;font-size:13px;outline:none" placeholder="Ej: Falla en instalación"></div>
+      <div class="field"><label style="font-size:12px;color:var(--gris-sec);font-weight:600;display:block;margin-bottom:5px">Pedido relacionado</label>
+        <select style="width:100%;height:40px;border:1.5px solid var(--gris-borde);border-radius:9px;padding:0 12px;font-size:13px;background:#fff"><option>#AT-2026-0418</option><option>#AT-2026-0392</option><option>#AT-2026-0371</option><option>Sin pedido</option></select>
+      </div>
+      <div class="field"><label style="font-size:12px;color:var(--gris-sec);font-weight:600;display:block;margin-bottom:5px">Descripción</label><textarea placeholder="Contanos qué pasó…"></textarea></div>
+      <a class="btn btn-primary btn-block btn-sm" onclick="toast('Reclamo creado. Ticket #TK-2102 (demo)')">Crear ticket</a>
+      <div style="font-size:11px;color:var(--gris-sec);margin-top:10px;line-height:1.5;text-align:center">Tiempo promedio de respuesta: <b style="color:var(--verde)">menos de 24 hs</b></div>
+    </div>
+  </div>
+</div></section>
+
+</main>
+
+<!-- FOOTER -->
+<footer><div class="wrap">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a class="logo"><div class="logo-mark">A</div><div><div class="logo-text">Alu<span>Tech</span></div><div class="logo-sub">Aberturas de aluminio y PVC</div></div></a>
+      <p>Fabricación e instalación de cerramientos de aluminio y PVC de alta gama. Confort térmico y acústico para obras residenciales y corporativas.</p>
+      <div class="foot-social">
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.4a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12a10 10 0 1 1-11.5-9.9v7H8v3h2.5v8.4A10 10 0 0 0 22 12Z"/></svg></a>
+        <a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"/></svg></a>
+      </div>
+    </div>
+    <div class="foot-col"><h4>Productos</h4><a onclick="go('catalogo')">Ventanas</a><a onclick="go('catalogo')">Puertas ventanas</a><a onclick="go('catalogo')">Portones</a><a onclick="go('catalogo')">Paños fijos</a><a onclick="go('configurador')">A medida</a></div>
+    <div class="foot-col"><h4>Mi cuenta</h4><a onclick="go('cuenta')">Resumen</a><a onclick="go('pedidos')">Mis pedidos</a><a onclick="go('seguimiento')">Seguimiento</a><a onclick="go('reclamos')">Reclamos</a><a>Mis favoritos</a></div>
+    <div class="foot-col"><h4>Ayuda</h4><a>Centro de ayuda</a><a>Medios de pago</a><a>Envíos e instalación</a><a>Garantía y post-venta</a><a>Contacto</a></div>
+  </div>
+  <div class="foot-bot">
+    <span>© 2026 AluTech S.A. · Córdoba, Argentina · ISO 9001:2015 · IRAM 11507</span>
+    <div class="pay"><span>VISA</span><span>MASTERCARD</span><span>NARANJA</span><span>MERCADO PAGO</span><span>TRANSFERENCIA</span></div>
+  </div>
+</div></footer>
+
+<!-- CHATBOT -->
+<div class="chat-fab" onclick="toggleChat()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg><span class="ind"></span></div>
+<div class="chat-win" id="chatWin">
+  <div class="chat-head"><div class="av">A</div><div class="ti"><div class="n">AluTech Asistente</div><div class="s"><span class="d"></span> IA · Responde al instante</div></div><div class="cl" onclick="toggleChat()">×</div></div>
+  <div class="chat-body" id="chatBody">
+    <div class="cb bot">¡Hola! Soy el asistente virtual de AluTech. Puedo ayudarte con consultas sobre aberturas, presupuestos, estado de tu pedido o reclamos. ¿En qué te ayudo?</div>
+  </div>
+  <div class="chat-quick">
+    <button onclick="chatSend('¿Cómo pido un presupuesto?')">¿Cómo pido un presupuesto?</button>
+    <button onclick="chatSend('Quiero seguir mi pedido')">Seguir mi pedido</button>
+    <button onclick="chatSend('¿Cuánto demora la fabricación?')">Tiempos de fabricación</button>
+    <button onclick="chatSend('Quiero abrir un reclamo')">Abrir un reclamo</button>
+  </div>
+  <div class="chat-in"><input id="chatInput" placeholder="Escribí tu consulta…" onkeydown="if(event.key==='Enter')chatSend()"><button onclick="chatSend()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></button></div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="modal-box">
+  <div class="modal-head"><h3 id="modalTitle">Pedido confirmado</h3><div class="cl" onclick="closeModal()">×</div></div>
+  <div class="modal-body" id="modalBody"></div>
+  <div class="modal-foot"><a class="btn btn-outline" onclick="closeModal()">Cerrar</a><a class="btn btn-primary" onclick="go('seguimiento');closeModal()">Ver seguimiento</a></div>
+</div></div>
+
+<script>
+// ---- Abertura SVG generator ----
+function abSVG(type){
+  const frame='#0B2D5C',glass='#cfe0f5',stroke='#1E63B6';
+  const wrap=(inner)=>'<svg viewBox="0 0 100 130" fill="none">'+inner+'</svg>';
+  if(type==='ventana2') return wrap(
+    '<rect x="3" y="3" width="94" height="124" rx="2" fill="'+glass+'" stroke="'+frame+'" stroke-width="3"/>'+
+    '<line x1="50" y1="3" x2="50" y2="127" stroke="'+frame+'" stroke-width="3"/>'+
+    '<line x1="3" y1="65" x2="97" y2="65" stroke="'+frame+'" stroke-width="3"/>'+
+    '<rect x="6" y="6" width="41" height="59" fill="#e3edfa" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<rect x="53" y="6" width="41" height="59" fill="#e3edfa" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<rect x="6" y="68" width="41" height="56" fill="#e3edfa" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<rect x="53" y="68" width="41" height="56" fill="#e3edfa" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<circle cx="48" cy="65" r="2" fill="'+frame+'"/>');
+  if(type==='ventanacorr') return wrap(
+    '<rect x="3" y="3" width="94" height="124" rx="2" fill="'+glass+'" stroke="'+frame+'" stroke-width="3"/>'+
+    '<line x1="50" y1="3" x2="50" y2="127" stroke="'+frame+'" stroke-width="4"/>'+
+    '<rect x="6" y="6" width="41" height="118" fill="#e3edfa" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<rect x="53" y="6" width="41" height="118" fill="#d0e0f2" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<line x1="53" y1="40" x2="94" y2="40" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<line x1="53" y1="80" x2="94" y2="80" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<line x1="6" y1="40" x2="47" y2="40" stroke="'+stroke+'" stroke-width="1"/>');
+  if(type==='puertaventana') return wrap(
+    '<rect x="3" y="3" width="94" height="124" rx="2" fill="'+glass+'" stroke="'+frame+'" stroke-width="3"/>'+
+    '<line x1="50" y1="3" x2="50" y2="127" stroke="'+frame+'" stroke-width="3"/>'+
+    '<rect x="6" y="6" width="41" height="118" fill="#e3edfa" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<line x1="6" y1="45" x2="47" y2="45" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<line x1="6" y1="85" x2="47" y2="85" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<rect x="53" y="6" width="41" height="118" fill="#d8e6f4" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<circle cx="90" cy="65" r="2.5" fill="'+frame+'"/>');
+  if(type==='porton') return wrap(
+    '<rect x="3" y="3" width="94" height="124" rx="2" fill="#dcdfe6" stroke="'+frame+'" stroke-width="3"/>'+
+    '<line x1="50" y1="3" x2="50" y2="127" stroke="'+frame+'" stroke-width="3"/>'+
+    '<rect x="6" y="6" width="41" height="118" fill="#cfd3dc" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<rect x="53" y="6" width="41" height="118" fill="#c4c9d4" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<g stroke="'+frame+'" stroke-width="1.2"><line x1="6" y1="36" x2="47" y2="36"/><line x1="6" y1="66" x2="47" y2="66"/><line x1="6" y1="96" x2="47" y2="96"/><line x1="53" y1="36" x2="94" y2="36"/><line x1="53" y1="66" x2="94" y2="66"/><line x1="53" y1="96" x2="94" y2="96"/></g>');
+  if(type==='pañofijo') return wrap(
+    '<rect x="3" y="3" width="94" height="124" rx="2" fill="'+glass+'" stroke="'+frame+'" stroke-width="3"/>'+
+    '<rect x="6" y="6" width="88" height="118" fill="#e3edfa" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<line x1="6" y1="45" x2="94" y2="45" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<line x1="50" y1="6" x2="50" y2="124" stroke="'+stroke+'" stroke-width="1"/>');
+  if(type==='bandea') return wrap(
+    '<rect x="3" y="40" width="94" height="87" rx="2" fill="'+glass+'" stroke="'+frame+'" stroke-width="3"/>'+
+    '<rect x="6" y="43" width="88" height="81" fill="#e3edfa" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<line x1="6" y1="80" x2="94" y2="80" stroke="'+stroke+'" stroke-width="1"/>'+
+    '<rect x="3" y="3" width="94" height="34" rx="2" fill="#d8e6f4" stroke="'+frame+'" stroke-width="3"/>'+
+    '<g stroke="'+frame+'" stroke-width="1"><line x1="20" y1="6" x2="20" y2="34"/><line x1="50" y1="6" x2="50" y2="34"/><line x1="80" y1="6" x2="80" y2="34"/></g>');
+  return wrap('<rect x="3" y="3" width="94" height="124" rx="2" fill="'+glass+'" stroke="'+frame+'" stroke-width="3"/>');
+}
+
+// ---- Product data ----
+const PRODUCTS=[
+  {t:'ventana2',cat:'Aluminio RPT',title:'Ventana 2 hojas — Aluminio RPT DVH',mat:'Aluminio',tipo:'A medida',price:'284.500',old:'318.000',tag:'Más vendido',tagc:'naranja',meta:['1200×1200','DVH 4/12/4','Instalación']},
+  {t:'ventanacorr',cat:'Aluminio L30',title:'Ventana corrediza 2 hojas',mat:'Aluminio',tipo:'Estandarizada',price:'198.900',old:'',tag:'Estándar',tagc:'verde',meta:['1500×1200','DVH','Instalación']},
+  {t:'puertaventana',cat:'Aluminio RPT',title:'Puerta ventana corrediza',mat:'Aluminio',tipo:'A medida',price:'412.300',old:'448.000',tag:'A medida',tagc:'',meta:['2100×900','DVH Low-E','Instalación']},
+  {t:'porton',cat:'Aluminio reforzado',title:'Portón levadizo 2 hojas',mat:'Aluminio',tipo:'A medida',price:'1.285.000',old:'',tag:'Premium',tagc:'naranja',meta:['3000×2500','Ciego','Envío']},
+  {t:'pañofijo',cat:'PVC reforzado',title:'Paño fijo PVC — DVH doble',mat:'PVC',tipo:'A medida',price:'164.700',old:'',tag:'',tagc:'',meta:['1800×1200','DVH 6/16/6','Instalación']},
+  {t:'bandea',cat:'Aluminio L30',title:'Bandea ventilada de aluminio',mat:'Aluminio',tipo:'Estandarizada',price:'98.400',old:'',tag:'Estándar',tagc:'verde',meta:['800×600','Laminado','Instalación']},
+  {t:'ventana2',cat:'PVC reforzado',title:'Ventana 2 hojas PVC — B2B',mat:'PVC',tipo:'Estandarizada',price:'156.200',old:'172.000',tag:'B2B',tagc:'verde',meta:['1000×1200','DVH','Instalación']},
+  {t:'ventanacorr',cat:'Aluminio RPT',title:'Ventana corrediza RPT 3 hojas',mat:'Aluminio',tipo:'A medida',price:'356.800',old:'',tag:'',tagc:'',meta:['2400×1500','DVH Low-E','Instalación']}
+];
+
+function cardHTML(p){
+  const tag=p.tag?('<span class="card-tag '+p.tagc+'">'+p.tag+'</span>'):'';
+  const old=p.old?('<small>antes $'+p.old+'</small>'):'<small>c/u</small>';
+  const meta=p.meta.map(m=>'<span class="m">'+m+'</span>').join('<span>·</span>');
+  return '<div class="card" onclick="openProduct(\''+p.t+'\',\''+p.title.replace(/'/g,"")+'\',\''+p.cat+'\',\''+p.price+'\')">'+
+    '<div class="card-img">'+tag+'<div class="fav" onclick="event.stopPropagation();toggleFav(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg></div><div class="ab">'+abSVG(p.t)+'</div></div>'+
+    '<div class="card-body"><div class="card-cat">'+p.cat+' · '+p.tipo+'</div><div class="card-title">'+p.title+'</div><div class="card-meta">'+meta+'</div>'+
+    '<div class="card-foot"><div class="card-price">$ '+p.price+' '+old+'</div><div class="card-add" onclick="event.stopPropagation();addToCart()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg></div></div></div></div>';
+}
+
+function renderGrids(){
+  document.getElementById('gridHome').innerHTML=PRODUCTS.slice(0,4).map(cardHTML).join('');
+  document.getElementById('gridStd').innerHTML=PRODUCTS.filter(p=>p.tipo==='Estandarizada').map(cardHTML).join('');
+  document.getElementById('gridCatalogo').innerHTML=PRODUCTS.map(cardHTML).join('');
+  document.getElementById('resCount').textContent=PRODUCTS.length;
+  // configurador preview
+  const cp=document.getElementById('cfgPreview'); if(cp) cp.innerHTML=abSVG('ventana2');
+  const pi=document.getElementById('prodImg'); if(pi) pi.innerHTML=abSVG('ventana2');
+  // render all data-ab placeholders
+  document.querySelectorAll('[data-ab]').forEach(el=>{el.innerHTML=abSVG(el.getAttribute('data-ab'));});
+}
+
+// ---- Navigation ----
+function go(view){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  const el=document.getElementById('view-'+view);
+  if(el) el.classList.add('active');
+  document.querySelectorAll('.catnav a').forEach(a=>a.classList.remove('active'));
+  const nav=document.querySelector('.catnav a[data-nav="'+view+'"]'); if(nav) nav.classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+// ---- Product open ----
+function openProduct(t,title,cat,price){
+  document.getElementById('crumbProd').textContent=title;
+  document.getElementById('prodTitle').textContent=title;
+  document.getElementById('prodCat').textContent=cat;
+  document.getElementById('prodPrice').textContent='$ '+price;
+  document.getElementById('prodImg').innerHTML=abSVG(t);
+  go('producto');
+}
+function setThumb(el,t){el.parentNode.querySelectorAll('.t').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');document.getElementById('prodImg').innerHTML=abSVG(t);}
+
+// ---- Tabs ----
+function tab(btn,i){const nav=btn.parentNode;nav.querySelectorAll('button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const panes=nav.parentNode.querySelectorAll('.tab-pane');panes.forEach(p=>p.classList.remove('active'));panes[i].classList.add('active');}
+
+// ---- Favorites ----
+function toggleFav(el){el.classList.toggle('on');}
+
+// ---- Cart ----
+function addToCart(){const c=document.getElementById('cartCount');c.textContent=parseInt(c.textContent)+1;toast('Producto agregado al carrito');}
+function addConfigured(){const c=document.getElementById('cartCount');c.textContent=parseInt(c.textContent)+1;toast('Abertura a medida agregada al carrito');}
+
+// ---- Configurador price calc ----
+function recalcCfg(){
+  const an=parseInt(document.getElementById('cfgAn').value)||1200;
+  const al=parseInt(document.getElementById('cfgAl').value)||1200;
+  document.getElementById('cfgMed').textContent=an+' × '+al+' mm';
+  const area=(an*al)/1000000;
+  const base=284500*Math.max(0.6,area/1.44);
+  document.getElementById('cfgPrice').textContent='$ '+Math.round(base/1000)*1000.toLocaleString('es-AR');
+}
+
+// ---- Configurador option selection ----
+document.addEventListener('click',function(e){
+  const opt=e.target.closest('.opt-row.cfg .opt');if(!opt)return;
+  opt.parentNode.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));opt.classList.add('sel');
+  recalcCfg();
+});
+
+// ---- Order confirm ----
+function confirmOrder(){
+  document.getElementById('modalTitle').textContent='¡Pedido confirmado!';
+  document.getElementById('modalBody').innerHTML=
+    '<div style="text-align:center;padding:6px 0 14px"><div style="width:64px;height:64px;border-radius:50%;background:var(--verde-claro);color:var(--verde);display:flex;align-items:center;justify-content:center;margin:0 auto 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" width="34" height="34"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>'+
+    '<h3 style="font-size:18px;font-weight:800;color:var(--azul-oscuro);margin-bottom:6px">Pedido #AT-2026-0419 generado</h3>'+
+    '<p style="font-size:13px;color:var(--gris-sec);max-width:380px;margin:0 auto">Se abonó el anticipo de relevamiento de <b style="color:var(--azul-oscuro)">$ 45.000</b>. En las próximas 24 hs un arquitecto coordinará la visita técnica a tu obra.</p></div>'+
+    '<div style="background:var(--gris-claro);border-radius:10px;padding:14px 16px;font-size:12.5px;color:var(--gris-texto);line-height:1.6"><b>Próximos pasos:</b><br>1. Visita técnica con escáner LIDAR<br>2. Diseño en AutoCAD + presupuesto técnico definitivo<br>3. Pago del 50% para iniciar fabricación<br>4. Seguimiento en tiempo real de tu pedido</div>';
+  document.getElementById('modal').classList.add('open');
+  const c=document.getElementById('cartCount');c.textContent='0';
+}
+
+// ---- Agenda ----
+function pickSlot(el){el.parentNode.querySelectorAll('.slot').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');}
+
+// ---- Reclamos ----
+function toggleConvo(el){const c=el.querySelector('.tk-convo');c.style.display=(c.style.display==='none'||!c.style.display)?'block':'none';}
+
+// ---- Modal ----
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+
+// ---- Chatbot ----
+function toggleChat(){document.getElementById('chatWin').classList.toggle('open');}
+function chatSend(msg){
+  const body=document.getElementById('chatBody');
+  const text=msg||(document.getElementById('chatInput').value||'').trim();
+  if(!text)return;
+  body.insertAdjacentHTML('beforeend','<div class="cb me">'+text+'</div>');
+  document.getElementById('chatInput').value='';
+  body.scrollTop=body.scrollHeight;
+  setTimeout(()=>{
+    let r='Gracias por tu consulta. Te derivo con un asesor para resolverlo a la brevedad.';
+    const q=text.toLowerCase();
+    if(q.includes('presupuesto'))r='Para pedir un presupuesto tenés dos opciones: 1) Elegí un producto del catálogo y ajustá medidas, o 2) Usá el configurador a medida para un presupuesto preliminar al instante. ¿Querés que te lleve al configurador?';
+    else if(q.includes('pedido')||q.includes('seguir')||q.includes('estado'))r='Podés ver el estado de tu pedido en tiempo real desde "Mis pedidos". Cada etapa (relevamiento, diseño, fabricación, entrega e instalación) se actualiza en vivo. ¿Te abro el seguimiento?';
+    else if(q.includes('demora')||q.includes('fabrica')||q.includes('tiempo'))r='El lead-time estimado es de 18 días hábiles desde que se acredita el pago del 50% para iniciar fabricación. Para aberturas estandarizadas el plazo es menor.';
+    else if(q.includes('reclamo')||q.includes('queja'))r='Lamentamos el inconveniente. Abrí un ticket desde el Centro de ayuda y lo centralizamos con historial de tu pedido. Tiempo promedio de respuesta: menos de 24 hs.';
+    else if(q.includes('pago')||q.includes('abonar'))r='Aceptamos transferencia, tarjeta de crédito (hasta 12 cuotas) y Mercado Pago. El proceso requiere anticipo de relevamiento y seña del 50% para fabricar.';
+    body.insertAdjacentHTML('beforeend','<div class="cb bot">'+r+'</div>');
+    body.scrollTop=body.scrollHeight;
+  },650);
+}
+
+// ---- Toast ----
+let toastT;
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2600);}
+
+// ---- Init ----
+renderGrids();
+document.getElementById('cfgAn').addEventListener('input',recalcCfg);
+document.getElementById('cfgAl').addEventListener('input',recalcCfg);
+</script>
+</body>
+</html>

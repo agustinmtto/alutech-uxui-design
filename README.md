@@ -1,17 +1,17 @@
 # AluTech S.A. — Panel de Indicadores de Mejora
 
-> Plataforma web empresarial UX/UI para el monitoreo de KPIs del proceso de gestión de venta de aberturas de **AluTech S.A.**, diseñada como una herramienta SaaS corporativa real.
+> Plataforma web empresarial UX/UI para el monitoreo de KPIs del proceso de gestión de venta de aberturas de **AluTech S.A.**, diseñada como herramienta de control y mejora continua.
 
-![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-38B2AC?logo=tailwind-css&logoColor=white)
-![Lucide](https://img.shields.io/badge/Lucide-Icons-000000?logo=lucide&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 ---
 
-## 📋 Descripción
+## Descripción
 
-Dashboard gerencial y operativo que centraliza los **26 indicadores** definidos para medir los resultados de la mejora del proceso comercial de AluTech: desde diseño técnico y atención por chatbot IA, hasta logística, reclamos, ventas digitales, RRHH, capacitación y expansión nacional.
+Dashboard gerencial y operativo construido en un único archivo `index.html` (sin frameworks ni dependencias externas) que centraliza los **26 indicadores** definidos para medir los resultados de la mejora del proceso comercial de AluTech: desde diseño técnico y atención por chatbot IA, hasta logística, reclamos, ventas digitales, RRHH, capacitación y expansión nacional.
 
 La interfaz comunica que la empresa cuenta con un sistema integrado para:
 
@@ -24,53 +24,49 @@ La interfaz comunica que la empresa cuenta con un sistema integrado para:
 
 ---
 
-## ✨ Características
+## Características
 
-- **Sidebar fijo** de 240 px con navegación entre los 10 módulos de la plataforma
+- **Sidebar fijo** de 240 px con navegación entre 10 módulos de la plataforma
 - **5 tarjetas KPI ejecutivas** con contadores animados y variación vs. período anterior
 - **Biblioteca de 26 indicadores** filtrables por categoría + buscador en tiempo real
 - **Modal de detalle** por KPI con objetivo, fórmula, fuente, responsable y gráfico histórico animado
 - **3 bloques de análisis inferior**: Operativo diario · Táctico semanal · Gerencial mensual
 - **Animaciones profesionales**: entrada escalonada, dibujo progresivo de sparklines (`stroke-dashoffset`), hover lifts, modal con backdrop blur, micro-interacciones en cada componente
-- Paleta corporativa, tipografía **Inter**, iconografía lineal consistente
+- Paleta corporativa, tipografía **Inter** (Google Fonts), iconografía SVG lineal consistente
 
 ---
 
-## 🛠️ Stack tecnológico
+## Stack tecnológico
 
 | Tecnología | Uso |
 |------------|-----|
-| **React 18** | Componentes funcionales, hooks (`useState`, `useEffect`, `useRef`, `useMemo`) |
-| **Tailwind CSS** | Utilidades de layout, spacing y tipografía |
-| **Lucide React** | Iconografía lineal (LayoutDashboard, BarChart3, etc.) |
-| **SVG nativo** | Sparklines y gráficos históricos con animaciones custom |
-| **Vite** | Build tool y dev server |
+| **HTML5** | Estructura y marcado semántico |
+| **CSS3 (inline)** | Variables CSS, layout flex/grid, animaciones `@keyframes` |
+| **JavaScript vanilla** | Renderizado dinámico, lógica de tabs, búsqueda, modal |
+| **SVG nativo** | Sparklines, minibars, gauges, donuts, progress bars con animaciones custom |
+| **Google Fonts (Inter)** | Tipografía corporativa cargada desde CDN |
+
+No requiere Node.js, npm ni build tool. Se abre directamente en el navegador.
 
 ---
 
-## 🚀 Instalación
+## Uso
 
 ```bash
-# Clonar el repositorio
-git clone https://github.com/agustinmtto/alutech-uxui-design.git
-cd alutech-uxui-design
+# Opción 1: abrir directamente en el navegador
+# Hacer doble clic en index.html
 
-# Instalar dependencias
-npm install
-
-# Levantar el servidor de desarrollo
-npm run dev
-
-# Build de producción
-npm run build
-npm run preview
+# Opción 2: servir con cualquier servidor estático
+npx serve .
+# o
+python -m http.server 8080
 ```
 
-Abrí `http://localhost:5173` (o el puerto que indique Vite) en el navegador.
+Abrir `http://localhost:8080` (o el puerto que indique tu servidor) en el navegador.
 
 ---
 
-## 🎨 Paleta de colores
+## Paleta de colores
 
 | Token | Hex | Uso |
 |-------|------|-----|
@@ -86,7 +82,7 @@ Abrí `http://localhost:5173` (o el puerto que indique Vite) en el navegador.
 
 ---
 
-## 📊 KPIs implementados (26 indicadores en 8 categorías)
+## KPIs implementados (26 indicadores en 8 categorías)
 
 | Categoría | Indicadores |
 |-----------|-------------|
@@ -104,61 +100,61 @@ Cada KPI incluye: nombre, categoría, valor actual, meta, frecuencia de medició
 
 ---
 
-## 📂 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 alutech-uxui-design/
-├── src/
-│   ├── components/
-│   │   └── AluTechDashboard.jsx   # Componente principal del dashboard
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css                  # Tailwind directives
-├── public/
-├── index.html
-├── package.json
-├── tailwind.config.js
-├── vite.config.js
+├── index.html     # Dashboard completo (HTML + CSS + JS en un solo archivo)
 └── README.md
 ```
 
+Todo el código vive en `index.html`, organizado en tres bloques:
+
+1. `<style>` — Variables CSS, componentes, animaciones
+2. `<body>` — Sidebar, header, contenido (renderizado por JS)
+3. `<script>` — Datos (`KPIS`, `SUMMARY`, `BLOCKS`), utilidades SVG, funciones de render
+
 ---
 
-## 🧩 Personalización
+## Personalización
 
 ### Cambiar el usuario logueado
-En `AluTechDashboard.jsx`, dentro del `<header>`, modificá el bloque del avatar:
 
-```jsx
-<img
-  src="URL_DE_LA_FOTO"
-  alt="Nombre del usuario"
-  className="w-9 h-9 rounded-lg object-cover"
-/>
-<div>
-  <div className="text-xs font-semibold leading-tight">Nombre Apellido</div>
-  <div className="text-[10px]">Rol del usuario</div>
+En `index.html`, dentro del `<header>`, buscá el bloque `.user`:
+
+```html
+<div class="user">
+  <img class="avatar" src="URL_DE_LA_FOTO" alt="Nombre del usuario" style="object-fit:cover;border:none;background:none;" />
+  <div class="user-meta">
+    <div class="name">Nombre Apellido</div>
+    <div class="role">Rol del usuario</div>
+  </div>
 </div>
 ```
 
 ### Agregar o editar KPIs
-El array `kpis` define todos los indicadores. Cada entrada incluye:
+
+El array `KPIS` (en el `<script>`) define todos los indicadores. Cada entrada incluye:
 
 ```js
 {
-  id, name, cat, value, target, freq, source,
-  status,    // 'good' | 'tracking' | 'risk'
-  trend,     // array de 7 valores para el sparkline
-  obj, formula, resp, horizon, desc   // datos del modal
+  id, cat, name, catLabel,
+  val, valNum, meta, freq, fuente,
+  estado,     // 'good' | 'warn' | 'risk'
+  viz,        // 'line' | 'bar' | 'gauge' | 'scale' | 'progress' | 'donut' | 'compare' | 'rank'
+  trend,      // array de 8 valores para el gráfico histórico
+  dir, good,  // dirección esperada de mejora ('up' | 'down')
+  objG, objE, formula, horizonte, responsable, actualizado, obs
 }
 ```
 
 ### Cambiar la paleta
-El objeto `C` al inicio del componente concentra todos los colores en un solo lugar.
+
+Todas las variables de color están definidas en `:root` al inicio del `<style>`.
 
 ---
 
-## 👤 Contexto del proyecto
+## Contexto del proyecto
 
 Trabajo académico desarrollado en el marco de la carrera de **Ingeniería en Sistemas de Información** en la **UTN Facultad Regional Córdoba**, como parte de la solución IT de soporte al plan de mejora del proceso comercial de **AluTech S.A.**, empresa de aberturas con proyección de expansión nacional.
 
@@ -166,13 +162,13 @@ El dashboard se incluye como **anexo visual** de la propuesta de solución, most
 
 ---
 
-## 📝 Licencia
+## Licencia
 
 MIT License — Proyecto académico de uso libre con atribución.
 
 ---
 
-## ✍️ Autor
+## Autor
 
 **Gerónimo "Momo" Benavides**  
 UTN Facultad Regional Córdoba

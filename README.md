@@ -168,7 +168,8 @@ MIT License — Proyecto académico de uso libre con atribución.
 
 ---
 
-## Autor
+## Autores
 
-**Gerónimo "Momo" Benavides**  
-UTN Facultad Regional Córdoba
+**Agustín Maretto** · **Pedro Torcivia**
+
+Proyecto desarrollado en el marco de la carrera de Ingeniería en Sistemas de Información de la **Universidad Tecnológica Nacional (UTN) - Facultad Regional Córdoba**.

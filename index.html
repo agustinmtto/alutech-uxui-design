@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=1440, initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440, initial-scale=1">
 <title>AluTech S.A. — Panel de Indicadores de Mejora</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#F5F7FA;
@@ -56,10 +56,25 @@
     position:fixed;top:0;left:0;bottom:0;
     z-index:30;
   }
+  @keyframes logoFadeIn{
+    from{opacity:0;transform:translateY(-10px) scale(.92)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+  }
   .logo{
-    padding:22px 20px 20px;
-    display:flex;align-items:center;gap:10px;
+    padding:24px 20px 22px;
+    display:flex;align-items:center;justify-content:center;
     border-bottom:1px solid rgba(255,255,255,.07);
+  }
+  .logo img{
+    max-height:64px;width:auto;object-fit:contain;
+    border-radius:14px;
+    box-shadow:0 4px 18px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.08);
+    animation:logoFadeIn .65s cubic-bezier(.2,.8,.3,1) both;
+    transition:transform .22s cubic-bezier(.2,.8,.3,1.3), box-shadow .22s;
+  }
+  .logo img:hover{
+    transform:scale(1.05);
+    box-shadow:0 8px 28px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.13);
   }
   .logo-mark{
     width:32px;height:32px;border-radius:8px;
@@ -384,151 +399,228 @@
   .detail-grid .dfield{animation:fadeUp .4s ease both}
   .chart-box,.obs{animation:fadeUp .5s ease .3s both}
 
+  /* ===== View: componentes reutilizables ===== */
+  .view-kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px}
+  .view-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .view-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .view-grid-23{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+  .view-grid-32{display:grid;grid-template-columns:1fr 2fr;gap:16px}
+  .vpanel{background:var(--blanco);border:1px solid var(--gris-borde);border-radius:var(--radio);box-shadow:var(--sombra);overflow:hidden}
+  .vpanel-head{padding:16px 20px;border-bottom:1px solid var(--gris-borde);display:flex;align-items:center;justify-content:space-between}
+  .vpanel-head h3{font-size:14px;font-weight:700;color:var(--azul-oscuro)}
+  .vpanel-head .vpsub{font-size:11px;color:var(--gris-sec);margin-top:2px}
+  .vpanel-body{padding:18px 20px}
+
+  /* Tabla */
+  .vtable{width:100%;border-collapse:collapse;font-size:12.5px}
+  .vtable th{text-align:left;padding:10px 12px;font-size:11px;font-weight:600;color:var(--gris-sec);text-transform:uppercase;letter-spacing:.4px;border-bottom:2px solid var(--gris-borde)}
+  .vtable td{padding:11px 12px;border-bottom:1px solid var(--gris-borde);color:var(--gris-texto)}
+  .vtable tbody tr{transition:background .12s}
+  .vtable tbody tr:hover{background:var(--azul-claro)}
+  .vtable tbody tr:last-child td{border-bottom:none}
+  .vtable .num{font-weight:700;color:var(--azul-oscuro);text-align:right;font-variant-numeric:tabular-nums}
+  .avatar-sm{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--azul-medio),var(--azul-oscuro));color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;vertical-align:middle;margin-right:8px}
+
+  /* Status badges */
+  .vstatus{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600}
+  .vstatus.good{background:var(--verde-claro);color:var(--verde)}
+  .vstatus.warn{background:var(--naranja-claro);color:var(--naranja)}
+  .vstatus.risk{background:var(--rojo-claro);color:var(--rojo)}
+  .vstatus.neutral{background:#EEF1F6;color:var(--gris-sec)}
+  .vstatus.info{background:var(--azul-claro);color:var(--azul-medio)}
+  .vstatus .dotc{width:6px;height:6px;border-radius:50%;background:currentColor}
+
+  /* Horizontal bars */
+  .hbar-row{display:flex;align-items:center;gap:10px;padding:7px 0}
+  .hbar-label{flex:0 0 130px;font-size:12.5px;color:var(--gris-texto);font-weight:500}
+  .hbar-track{flex:1;height:22px;background:#EEF1F6;border-radius:6px;overflow:hidden;position:relative}
+  .hbar-fill{height:100%;border-radius:6px;transform-origin:left;animation:progWidth .9s cubic-bezier(.4,0,.2,1) both;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:10.5px;font-weight:700}
+  .hbar-val{flex:0 0 60px;text-align:right;font-size:12.5px;font-weight:700;color:var(--azul-oscuro)}
+
+  /* Kanban */
+  .kanban{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .kanban-col{background:#fbfcfe;border:1px solid var(--gris-borde);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px}
+  .kanban-col-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:8px;border-bottom:2px solid var(--gris-borde)}
+  .kanban-col-head .kt{font-size:11.5px;font-weight:700;color:var(--gris-texto)}
+  .kanban-col-head .kc{font-size:11px;font-weight:700;padding:1px 7px;border-radius:20px;background:var(--azul-claro);color:var(--azul-medio)}
+  .kanban-card{background:#fff;border:1px solid var(--gris-borde);border-radius:8px;padding:10px;cursor:pointer;transition:border-color .15s,transform .1s;font-size:11.5px}
+  .kanban-card:hover{border-color:var(--azul-medio);transform:translateY(-1px)}
+  .kanban-card .kc-id{font-size:10px;color:var(--gris-sec);font-weight:600}
+  .kanban-card .kc-nm{font-weight:600;color:var(--gris-texto);margin:3px 0}
+  .kanban-card .kc-amt{font-weight:700;color:var(--azul-oscuro);font-size:12px}
+
+  /* Toggle switch */
+  .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--gris-borde)}
+  .toggle-row:last-child{border-bottom:none}
+  .toggle-row .tl{font-size:13px;font-weight:500;color:var(--gris-texto)}
+  .toggle-row .td{font-size:11px;color:var(--gris-sec);margin-top:1px}
+  .toggle{width:42px;height:24px;border-radius:20px;background:#D9DEE7;position:relative;cursor:pointer;transition:background .2s;flex:0 0 42px}
+  .toggle.on{background:var(--verde)}
+  .toggle::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s cubic-bezier(.2,.8,.3,1.4)}
+  .toggle.on::after{transform:translateX(18px)}
+
+  /* Funnel */
+  .funnel{display:flex;flex-direction:column;gap:4px;align-items:center;padding:8px 0}
+  .funnel-step{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-radius:8px;color:#fff;font-size:12.5px;font-weight:600;animation:fadeUp .5s ease both;min-height:40px}
+  .funnel-step .fs-val{font-weight:800;font-size:15px}
+
+  /* Fleet grid */
+  .fleet-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .fleet-card{border:1px solid var(--gris-borde);border-radius:8px;padding:12px;text-align:center;transition:border-color .15s,transform .1s;cursor:default}
+  .fleet-card:hover{transform:translateY(-2px);border-color:var(--azul-medio)}
+  .fleet-card .fid{font-size:11px;font-weight:700;color:var(--gris-sec)}
+  .fleet-card .ftype{font-size:12px;font-weight:600;color:var(--gris-texto);margin:4px 0}
+  .fleet-card .fdot{width:8px;height:8px;border-radius:50%;margin:6px auto 4px}
+
+  /* Integration cards */
+  .integ-card{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--gris-borde);border-radius:10px;transition:border-color .15s,transform .1s}
+  .integ-card:hover{transform:translateY(-2px);border-color:var(--azul-medio)}
+  .integ-ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:0 0 40px}
+  .integ-ico svg{width:20px;height:20px}
+  .integ-info{flex:1}
+  .integ-info .inm{font-size:13px;font-weight:600;color:var(--gris-texto)}
+  .integ-info .ids{font-size:11px;color:var(--gris-sec);margin-top:1px}
+
+  /* Route items */
+  .route-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--gris-borde)}
+  .route-item:last-child{border-bottom:none}
+  .route-num{width:30px;height:30px;border-radius:8px;background:var(--azul-claro);color:var(--azul-medio);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex:0 0 30px}
+  .route-info{flex:1}
+  .route-info .rdest{font-size:12.5px;font-weight:600;color:var(--gris-texto)}
+  .route-info .rdet{font-size:11px;color:var(--gris-sec);margin-top:1px}
+
+  /* Form fields */
+  .form-row{display:flex;flex-direction:column;gap:5px;margin-bottom:16px}
+  .form-row label{font-size:11px;font-weight:600;color:var(--gris-sec);text-transform:uppercase;letter-spacing:.4px}
+  .form-row input,.form-row select{padding:10px 12px;border:1px solid var(--gris-borde);border-radius:8px;font-size:13px;font-family:inherit;color:var(--gris-texto);background:#fbfcfe;transition:border-color .15s,box-shadow .15s}
+  .form-row input:focus,.form-row select:focus{outline:none;border-color:var(--azul-medio);box-shadow:0 0 0 3px var(--azul-claro)}
+  .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+  /* Bar chart (vertical) */
+  .vbar-chart{display:flex;align-items:flex-end;gap:10px;height:190px}
+  .vbar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+  .vbar-col-inner{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;width:100%;gap:3px}
+  .vbar-bar{width:26px;border-radius:4px 4px 0 0;transform-origin:bottom;animation:barUp .6s cubic-bezier(.2,.8,.3,1) both}
+  .vbar-label{font-size:10px;color:var(--gris-sec);font-weight:500;flex:0 0 auto}
+  .vbar-val{font-size:9.5px;font-weight:700;color:var(--azul-oscuro)}
+
+  /* Donut legend */
+  .donut-legend{display:flex;flex-direction:column;gap:8px;flex:1}
+  .dl-row{display:flex;align-items:center;gap:8px;font-size:12px}
+  .dl-dot{width:10px;height:10px;border-radius:3px;flex:0 0 10px}
+  .dl-lbl{flex:1;color:var(--gris-texto)}
+  .dl-val{font-weight:700;color:var(--azul-oscuro)}
+
+  /* Training progress */
+  .train-item{padding:12px 0;border-bottom:1px solid var(--gris-borde)}
+  .train-item:last-child{border-bottom:none}
+  .train-head{display:flex;justify-content:space-between;margin-bottom:6px}
+  .train-head .tnm{font-size:12.5px;font-weight:600;color:var(--gris-texto)}
+  .train-head .tpct{font-size:12px;font-weight:700;color:var(--azul-medio)}
+  .train-track{height:6px;background:#EEF1F6;border-radius:4px;overflow:hidden}
+  .train-fill{height:100%;border-radius:4px;transform-origin:left;animation:progWidth .8s ease both}
+
   .footer-line{padding:14px 28px;border-top:1px solid var(--gris-borde);background:#fff;font-size:11px;color:var(--gris-sec);display:flex;justify-content:space-between}
 </style>
 </head>
 <body>
-<div class="app">
+<div data-hf-id="hf-gk5l" class="app">
 
   <!-- ============ SIDEBAR ============ -->
-  <aside class="sidebar">
-    <div class="logo">
-      <div class="logo-mark">A</div>
-      <div>
-        <div class="logo-text">Alu<span>Tech</span></div>
-        <div class="logo-sub">Gestión & Mejora</div>
-      </div>
+  <aside data-hf-id="hf-842t" class="sidebar">
+    <div data-hf-id="hf-e319" class="logo">
+      <img src="alutech_logo_sidebar.png" alt="AluTech">
     </div>
-    <nav class="nav" id="nav">
-      <div class="nav-section">Principal</div>
-      <div class="nav-item" data-i="dashboard">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
-        Dashboard
-      </div>
-      <div class="nav-item" data-i="ventas">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+    <nav data-hf-id="hf-luuy" class="nav" id="nav">
+      <div data-hf-id="hf-t909" class="nav-section">Principal</div>
+      <div data-hf-id="hf-r4m6" class="nav-item" data-view="ventas">
+        <svg data-hf-id="hf-ly9u" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle data-hf-id="hf-qomx" cx="9" cy="21" r="1" /><circle data-hf-id="hf-76ze" cx="20" cy="21" r="1" /><path data-hf-id="hf-3524" d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6" /></svg>
         Ventas
       </div>
-      <div class="nav-item" data-i="clientes">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <div data-hf-id="hf-f4ni" class="nav-item" data-view="clientes">
+        <svg data-hf-id="hf-ebl2" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path data-hf-id="hf-97rn" d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle data-hf-id="hf-nb88" cx="9" cy="7" r="4" /><path data-hf-id="hf-vo2g" d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" /></svg>
         Clientes
       </div>
-      <div class="nav-item" data-i="pedidos">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 16h6v-5a2 2 0 0 0-2-2h-4l-2-2H6a2 2 0 0 0-2 2v4"/><rect x="2" y="16" width="20" height="5" rx="1"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="16.5" cy="18.5" r="1.5"/></svg>
+      <div data-hf-id="hf-gklo" class="nav-item" data-view="pedidos">
+        <svg data-hf-id="hf-epw3" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path data-hf-id="hf-7puh" d="M16 16h6v-5a2 2 0 0 0-2-2h-4l-2-2H6a2 2 0 0 0-2 2v4" /><rect data-hf-id="hf-v8ie" x="2" y="16" width="20" height="5" rx="1" /><circle data-hf-id="hf-7wog" cx="7.5" cy="18.5" r="1.5" /><circle data-hf-id="hf-w47m" cx="16.5" cy="18.5" r="1.5" /></svg>
         Pedidos
       </div>
-      <div class="nav-item" data-i="diseno">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.5 5.5 18.5 9.5"/><path d="M3 21l3-3 11-11 4 4-11 11-3 3z" transform="rotate(0 12 12)"/><path d="M3 21h6"/><path d="M21 3 3 21"/></svg>
+      <div data-hf-id="hf-x1zg" class="nav-item" data-view="diseno">
+        <svg data-hf-id="hf-f474" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path data-hf-id="hf-e7x5" d="M14.5 5.5 18.5 9.5" /><path data-hf-id="hf-d5no" d="M3 21l3-3 11-11 4 4-11 11-3 3z" transform="rotate(0 12 12)" /><path data-hf-id="hf-nag7" d="M3 21h6" /><path data-hf-id="hf-bf9j" d="M21 3 3 21" /></svg>
         Diseño técnico
       </div>
-      <div class="nav-item" data-i="logistica">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg>
+      <div data-hf-id="hf-0ln8" class="nav-item" data-view="logistica">
+        <svg data-hf-id="hf-cc1x" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect data-hf-id="hf-byqo" x="1" y="3" width="15" height="13" rx="1" /><path data-hf-id="hf-p0az" d="M16 8h4l3 3v5h-7" /><circle data-hf-id="hf-46lk" cx="6" cy="19" r="2" /><circle data-hf-id="hf-9go5" cx="18" cy="19" r="2" /></svg>
         Logística
       </div>
-      <div class="nav-item" data-i="reclamos">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10.3 3.3 1.8 17a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.3a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12" y2="17"/></svg>
+      <div data-hf-id="hf-01ug" class="nav-item" data-view="reclamos">
+        <svg data-hf-id="hf-cqcy" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path data-hf-id="hf-d51j" d="M10.3 3.3 1.8 17a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.3a2 2 0 0 0-3.4 0z" /><line data-hf-id="hf-0inb" x1="12" y1="9" x2="12" y2="13" /><line data-hf-id="hf-xj3m" x1="12" y1="17" x2="12" y2="17" /></svg>
         Reclamos
       </div>
-      <div class="nav-item" data-i="rrhh">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+      <div data-hf-id="hf-3lqo" class="nav-item" data-view="rrhh">
+        <svg data-hf-id="hf-d4nz" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path data-hf-id="hf-frh1" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle data-hf-id="hf-ejg0" cx="9" cy="7" r="4" /><polyline data-hf-id="hf-2k64" points="17 11 19 13 23 9" /></svg>
         RRHH
       </div>
-      <div class="nav-section">Análisis</div>
-      <div class="nav-item active" data-i="indicadores">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/></svg>
+      <div data-hf-id="hf-suv7" class="nav-section">Análisis</div>
+      <div data-hf-id="hf-2nvk" class="nav-item" data-view="indicadores">
+        <svg data-hf-id="hf-diz0" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path data-hf-id="hf-mieh" d="M3 3v18h18" /><rect data-hf-id="hf-k2cg" x="7" y="11" width="3" height="6" /><rect data-hf-id="hf-nof6" x="12" y="7" width="3" height="10" /><rect data-hf-id="hf-rb47" x="17" y="13" width="3" height="4" /></svg>
         Indicadores
       </div>
-      <div class="nav-item" data-i="config">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <div data-hf-id="hf-gxwn" class="nav-item" data-view="config">
+        <svg data-hf-id="hf-aqtt" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle data-hf-id="hf-2731" cx="12" cy="12" r="3" /><path data-hf-id="hf-lg0d" d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" /></svg>
         Configuración
       </div>
     </nav>
-    <div class="sidebar-foot">
-      <span><span class="dot"></span>Sistema online</span>
-      <span>v2.4.1</span>
+    <div data-hf-id="hf-37m9" class="sidebar-foot">
+      <span data-hf-id="hf-p4pi"><span data-hf-id="hf-9gry" class="dot"></span>Sistema online</span>
+      <span data-hf-id="hf-uw9i">v2.4.1</span>
     </div>
   </aside>
 
   <!-- ============ MAIN ============ -->
-  <main class="main">
+  <main data-hf-id="hf-g3rz" class="main">
     <!-- Header -->
-    <header class="header">
-      <div class="header-titles">
-        <h1>Panel de Indicadores de Mejora</h1>
-        <p>Seguimiento de resultados del proceso de gestión de venta de aberturas</p>
+    <header data-hf-id="hf-hr6f" class="header">
+      <div data-hf-id="hf-sn79" class="header-titles">
+        <h1 data-hf-id="hf-umez" id="headerTitle">Panel de Indicadores de Mejora</h1>
+        <p data-hf-id="hf-xqdk" id="headerSub">Seguimiento de resultados del proceso de gestión de venta de aberturas</p>
       </div>
-      <div class="header-tools">
-        <div class="search">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="searchInput" placeholder="Buscar indicador…" />
+      <div data-hf-id="hf-2jm1" class="header-tools">
+        <div data-hf-id="hf-y62s" class="search">
+          <svg data-hf-id="hf-rfbg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle data-hf-id="hf-r9ft" cx="11" cy="11" r="7" /><line data-hf-id="hf-qhri" x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+          <input data-hf-id="hf-6s51" type="text" id="searchInput" placeholder="Buscar indicador…">
         </div>
-        <div class="select" id="periodSel">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <div data-hf-id="hf-xu3l" class="select" id="periodSel">
+          <svg data-hf-id="hf-hch0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect data-hf-id="hf-4rv6" x="3" y="4" width="18" height="18" rx="2" /><line data-hf-id="hf-9n0e" x1="16" y1="2" x2="16" y2="6" /><line data-hf-id="hf-6070" x1="8" y1="2" x2="8" y2="6" /><line data-hf-id="hf-c30i" x1="3" y1="10" x2="21" y2="10" /></svg>
           Últimos 30 días
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg data-hf-id="hf-g5jx" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline data-hf-id="hf-nt9k" points="6 9 12 15 18 9" /></svg>
         </div>
-        <div class="icon-btn" title="Notificaciones">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
-          <span class="badge"></span>
+        <div data-hf-id="hf-6w6z" class="icon-btn" title="Notificaciones">
+          <svg data-hf-id="hf-gjuy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path data-hf-id="hf-25fy" d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path data-hf-id="hf-hu1d" d="M13.7 21a2 2 0 0 1-3.4 0" /></svg>
+          <span data-hf-id="hf-z2ma" class="badge"></span>
         </div>
-        <div class="user">
-          <img class="avatar" src="https://media.0221.com.ar/adjuntos/357/migration/0221/032019/1553553111207.jpg" alt="Gerónimo Benavides" style="object-fit:cover;border:none;background:none;" />
-          <div class="user-meta">
-            <div class="name">G. "Momo" Benavides</div>
-            <div class="role">Gerencia / Administrador</div>
+        <div data-hf-id="hf-ugmh" class="user">
+          <img data-hf-id="hf-wm1p" class="avatar" src="https://media.0221.com.ar/adjuntos/357/migration/0221/032019/1553553111207.jpg" alt="Gerónimo Benavides" style="object-fit:cover;border:none;background:none;">
+          <div data-hf-id="hf-dlwl" class="user-meta">
+            <div data-hf-id="hf-8jcj" class="name">G. "Momo" Benavides</div>
+            <div data-hf-id="hf-rk84" class="role">Gerencia / Administrador</div>
           </div>
         </div>
       </div>
     </header>
 
-    <div class="content">
-      <!-- Resumen ejecutivo -->
-      <section>
-        <div class="section-head">
-          <h2>Resumen ejecutivo</h2>
-          <span class="muted">Variación vs. período anterior · Últimos 30 días</span>
-        </div>
-        <div class="kpi-row" id="summaryRow"></div>
-      </section>
+    <div data-hf-id="hf-nwks" class="content" id="content"></div>
 
-      <!-- Biblioteca de indicadores -->
-      <section class="panel">
-        <div class="panel-head">
-          <div class="row">
-            <div>
-              <h2>Biblioteca de Indicadores</h2>
-              <div class="sub" id="panelSub">Indicadores principales del proceso de mejora</div>
-            </div>
-            <div class="right">
-              <span class="pill-count" id="kpiCount">26</span>
-              <span>indicadores activos</span>
-            </div>
-          </div>
-          <div class="tabs" id="tabs"></div>
-        </div>
-        <div class="kpi-grid" id="kpiGrid"></div>
-      </section>
-
-      <!-- Bloques inferiores -->
-      <section>
-        <div class="section-head">
-          <h2>Niveles de análisis</h2>
-          <span class="muted">Vista operativa, táctica y gerencial del proceso</span>
-        </div>
-        <div class="blocks" id="blocks"></div>
-      </section>
-    </div>
-
-    <div class="footer-line">
-      <span>AluTech S.A. — Sistema integral de gestión de mejora continua</span>
-      <span>Datos actualizados: 19 jun 2026 · 09:42</span>
+    <div data-hf-id="hf-3t94" class="footer-line">
+      <span data-hf-id="hf-if83">AluTech S.A. — Sistema integral de gestión de mejora continua</span>
+      <span data-hf-id="hf-b2zr">Datos actualizados: 19 jun 2026 · 09:42</span>
     </div>
   </main>
 </div>
 
 <!-- ============ MODAL ============ -->
-<div class="overlay" id="overlay">
-  <div class="modal" id="modal"></div>
+<div data-hf-id="hf-v6wm" class="overlay" id="overlay">
+  <div data-hf-id="hf-1bwg" class="modal" id="modal"></div>
 </div>
 
 <script>
@@ -1155,14 +1247,356 @@ function closeModal(){ overlay.classList.remove('show'); }
 overlay.addEventListener('click',e=>{ if(e.target===overlay) closeModal(); });
 document.addEventListener('keydown',e=>{ if(e.key==="Escape") closeModal(); });
 /* =========================================================
+   View System — Navegación multi-pantalla
+   ========================================================= */
+let currentView='indicadores';
+
+const VI={
+  money:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+  tag:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>',
+  cart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>',
+  users:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+  userPlus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>',
+  trending:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>',
+  truck:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg>',
+  route:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>',
+  fuel:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="22" x2="15" y2="22"/><line x1="4" y1="9" x2="14" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/></svg>',
+  alert:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.3 3.3 1.8 17a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.3a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12" y2="17"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>',
+  wrench:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+  graduation:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 2 3 4 3h4c2 0 4-2 4-3v-5"/></svg>',
+  settings:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
+  plug:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2v6M15 2v6M5 8h14v3a7 7 0 0 1-14 0V8zM12 18v4"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+  box:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+  pen:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>',
+  map:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>',
+  layers:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
+  briefcase:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
+  percent:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>',
+};
+
+/* ---- Helpers ---- */
+function vKpiRow(items){
+  return `<div class="view-kpi-row">${items.map((k,i)=>`<div class="kpi-card anim-up" style="animation-delay:${(i*0.07).toFixed(2)}s">
+    <div class="top"><div class="name">${k.name}</div><div class="ico ${k.tone||'blue'}">${k.icon||''}</div></div>
+    <div class="val" data-final="${k.val}">${k.val}</div>
+    <div class="foot"><span class="delta ${k.kind||'good'}">${k.delta||''}</span>${k.estado?`<span class="estado-chip ${k.kind||'good'}">${k.estado}</span>`:''}</div>
+  </div>`).join('')}</div>`;
+}
+function vPanel(title,sub,body){
+  return `<div class="vpanel anim-up" style="animation-delay:0s">
+    <div class="vpanel-head"><div><h3>${title}</h3>${sub?`<div class="vpsub">${sub}</div>`:''}</div></div>
+    <div class="vpanel-body">${body}</div></div>`;
+}
+function vTable(headers,rows){
+  return `<table class="vtable"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+    <tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+}
+function vStatus(text,kind){
+  return `<span class="vstatus ${kind||'neutral'}"><span class="dotc"></span>${text}</span>`;
+}
+function vHBars(data,color){
+  const max=Math.max(...data.map(d=>d.val));
+  const c=color||'#1E63B6';
+  return data.map((d,i)=>`<div class="hbar-row"><div class="hbar-label">${d.label}</div>
+    <div class="hbar-track"><div class="hbar-fill" style="width:${(d.val/max*100).toFixed(1)}%;background:${c};animation-delay:${(i*0.06).toFixed(2)}s">${d.val}</div></div>
+    <div class="hbar-val">${d.val}</div></div>`).join('');
+}
+function vBarChart(data,labels,color,color2){
+  color=color||'#1E63B6'; color2=color2||'#2E7D32';
+  const chartH=150, max=Math.max(...data.map(d=>Array.isArray(d)?Math.max(...d):d));
+  return `<div class="vbar-chart">${data.map((d,i)=>{
+    const g=Array.isArray(d), vals=g?d:[d];
+    return `<div class="vbar-col"><div class="vbar-col-inner">
+      <div class="vbar-val">${g?vals.map(v=>v.toLocaleString('es-AR')).join(' / '):vals[0].toLocaleString('es-AR')}</div>
+      <div style="display:flex;gap:3px;align-items:flex-end">
+        ${vals.map((v,j)=>`<div class="vbar-bar" style="height:${Math.max(4,(v/max*chartH)).toFixed(0)}px;background:${j===0?color:color2};animation-delay:${(i*0.05).toFixed(2)}s"></div>`).join('')}
+      </div></div><div class="vbar-label">${labels[i]}</div></div>`;
+  }).join('')}</div>`;
+}
+function vDonutLegend(segs,totalLabel){
+  const colors=['#1E63B6','#2E7D32','#F26A21','#6B7280','#0B2D5C'];
+  const total=segs.reduce((s,x)=>s+x.val,0);
+  const r=38, cx=50, cy=50, circ=2*Math.PI*r;
+  let off=0;
+  const arcs=segs.map((s,i)=>{
+    const len=(s.val/total)*circ;
+    const a=`<circle style="opacity:0;animation:areaIn .6s ease ${(i*0.12).toFixed(2)}s forwards" cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${colors[i%colors.length]}" stroke-width="14" stroke-dasharray="${len.toFixed(1)} ${(circ-len).toFixed(1)}" stroke-dashoffset="${(-off).toFixed(1)}" transform="rotate(-90 ${cx} ${cy})"/>`;
+    off+=len; return a;
+  }).join('');
+  return `<div style="display:flex;align-items:center;gap:20px">
+    <svg viewBox="0 0 100 100" width="120" height="120" style="flex:0 0 120px">
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#EEF1F6" stroke-width="14"/>
+      ${arcs}<text x="${cx}" y="${cy-1}" text-anchor="middle" font-size="15" font-weight="800" fill="#0B2D5C" font-family="Inter">${total.toLocaleString('es-AR')}</text>
+      <text x="${cx}" y="${cy+13}" text-anchor="middle" font-size="8" fill="#6B7280" font-family="Inter">${totalLabel||'Total'}</text>
+    </svg><div class="donut-legend">${segs.map((s,i)=>`<div class="dl-row"><div class="dl-dot" style="background:${colors[i%colors.length]}"></div><div class="dl-lbl">${s.label}</div><div class="dl-val">${s.pct}</div></div>`).join('')}</div></div>`;
+}
+
+/* ---- Vista: Indicadores ---- */
+function viewIndicadores(){
+  return `<section><div class="section-head"><h2>Resumen ejecutivo</h2><span class="muted">Variación vs. período anterior · Últimos 30 días</span></div><div class="kpi-row" id="summaryRow"></div></section>
+  <section class="panel"><div class="panel-head"><div class="row"><div><h2>Biblioteca de Indicadores</h2><div class="sub" id="panelSub">Indicadores principales del proceso de mejora</div></div><div class="right"><span class="pill-count" id="kpiCount">26</span><span>indicadores activos</span></div></div><div class="tabs" id="tabs"></div></div><div class="kpi-grid" id="kpiGrid"></div></section>
+  <section><div class="section-head"><h2>Niveles de análisis</h2><span class="muted">Vista operativa, táctica y gerencial del proceso</span></div><div class="blocks" id="blocks"></div></section>`;
+}
+
+/* ---- Vista: Ventas ---- */
+function viewVentas(){
+  const kpis=[
+    {name:'Ingresos del mes',val:'$4.280.000',delta:'+23%',kind:'good',icon:VI.money,tone:'blue'},
+    {name:'Ticket promedio',val:'$285.300',delta:'+8%',kind:'good',icon:VI.tag,tone:'green'},
+    {name:'Pedidos cerrados',val:'1.502',delta:'+19%',kind:'good',icon:VI.cart,tone:'blue'},
+    {name:'Conversión portal',val:'34%',delta:'+12 pts',kind:'good',icon:VI.percent,tone:'orange'}
+  ];
+  const months=['Nov','Dic','Ene','Feb','Mar','Abr','May','Jun'];
+  const sales=[2980,3240,3520,3680,3750,3920,4100,4280];
+  const channels=[{label:'Showroom',val:42,pct:'42%'},{label:'Portal web',val:34,pct:'34%'},{label:'Arquitectos',val:18,pct:'18%'},{label:'Otros',val:6,pct:'6%'}];
+  const products=[{label:'Ventana corrediza 1,20×1,20',val:312},{label:'Puerta plegadiza 0,90×2,10',val:248},{label:'Ventana oscilobatiente 1,00×1,20',val:196},{label:'Portón corredizo 3,00×2,40',val:174},{label:'Ventana fija 1,50×1,00',val:152}];
+  const funnel=[{l:'Visitas al portal',v:8420,c:'#1E63B6',w:'100%'},{l:'Consultas iniciadas',v:4180,c:'#1E63B6',w:'80%'},{l:'Presupuestos emitidos',v:2240,c:'#0B2D5C',w:'60%'},{l:'Pedidos confirmados',v:1502,c:'#F26A21',w:'44%'},{l:'Entregas completadas',v:1340,c:'#2E7D32',w:'38%'}];
+  return vKpiRow(kpis)+`
+  <div class="view-grid-2">
+    ${vPanel('Evolución mensual de ventas','Ingresos en miles de pesos · últimos 8 meses',vBarChart(sales,months,'#1E63B6'))}
+    ${vPanel('Ventas por canal','Distribución por punto de venta',vDonutLegend(channels.map(c=>({label:c.label,val:c.val,pct:c.pct})),'Ventas %'))}
+  </div>
+  <div class="view-grid-2">
+    ${vPanel('Productos más vendidos','Top 5 modelos del período',vHBars(products,'#1E63B6'))}
+    ${vPanel('Embudo de conversión','Del portal a la entrega',`<div class="funnel">${funnel.map((s,i)=>`<div class="funnel-step" style="background:${s.c};width:${s.w};animation-delay:${(i*0.1).toFixed(2)}s"><span>${s.l}</span><span class="fs-val">${s.v.toLocaleString('es-AR')}</span></div>`).join('')}</div>`)}
+  </div>`;
+}
+
+/* ---- Vista: Clientes ---- */
+function viewClientes(){
+  const kpis=[
+    {name:'Total clientes',val:'3.840',delta:'+142',kind:'good',icon:VI.users,tone:'blue'},
+    {name:'Nuevos este mes',val:'142',delta:'+18%',kind:'good',icon:VI.userPlus,tone:'green'},
+    {name:'Clientes activos',val:'2.910',delta:'+6%',kind:'good',icon:VI.check,tone:'green'},
+    {name:'Tasa de churn',val:'4,2%',delta:'-1,1 pts',kind:'good',icon:VI.trending,tone:'orange'}
+  ];
+  const segs=[{label:'Premium',val:1075,pct:'28%'},{label:'Estándar',val:1728,pct:'45%'},{label:'Ocasional',val:730,pct:'19%'},{label:'Nuevo',val:307,pct:'8%'}];
+  const channels=[{label:'Portal web',val:34},{label:'Showroom',val:28},{label:'Recomendación',val:20},{label:'Arquitectos',val:12},{label:'Redes sociales',val:6}];
+  const clients=[
+    ['<span class="avatar-sm">JR</span>Constructora Río','Empresa','Córdoba','$1.2M',vStatus('Premium','info')],
+    ['<span class="avatar-sm">MS</span>M. Sánchez','Particular','Rosario','$45K',vStatus('Estándar','good')],
+    ['<span class="avatar-sm">EV</span>Estudio Vera','Empresa','Mendoza','$890K',vStatus('Premium','info')],
+    ['<span class="avatar-sm">LC</span>L. Castro','Particular','La Plata','$62K',vStatus('Estándar','good')],
+    ['<span class="avatar-sm">AT</span>Arq. Torres','Profesional','CABA','$340K',vStatus('Premium','info')],
+    ['<span class="avatar-sm">FP</span>F. Pereyra','Particular','Mar del Plata','$28K',vStatus('Nuevo','warn')]
+  ];
+  return vKpiRow(kpis)+`
+  <div class="view-grid-2">
+    ${vPanel('Segmentos de clientes','Distribución por tipo',vDonutLegend(segs,'Clientes'))}
+    ${vPanel('Canales de adquisición','Origen de nuevos clientes',vHBars(channels,'#2E7D32'))}
+  </div>
+  ${vPanel('Clientes recientes','Últimos registros del CRM',vTable(['Cliente','Tipo','Ubicación','Facturación','Segmento'],clients))}`;
+}
+
+/* ---- Vista: Pedidos ---- */
+function viewPedidos(){
+  const kpis=[
+    {name:'Pedidos activos',val:'218',delta:'',kind:'good',icon:VI.box,tone:'blue'},
+    {name:'En producción',val:'84',delta:'',kind:'good',icon:VI.wrench,tone:'orange'},
+    {name:'En tránsito',val:'32',delta:'',kind:'good',icon:VI.truck,tone:'blue'},
+    {name:'Entregados hoy',val:'34',delta:'+12',kind:'good',icon:VI.check,tone:'green'}
+  ];
+  const kanban=[
+    {t:'Nuevo',c:'42',col:['ORD-2401','ORD-2402','ORD-2403'],items:[{id:'ORD-2401',nm:'Ventana corrediza ×3',amt:'$185K'},{id:'ORD-2402',nm:'Puerta plegadiza ×2',amt:'$120K'},{id:'ORD-2403',nm:'Portón corredizo ×1',amt:'$240K'}]},
+    {t:'En diseño',c:'38',col:['ORD-2395','ORD-2396'],items:[{id:'ORD-2395',nm:'Ventana fija ×5',amt:'$95K'},{id:'ORD-2396',nm:'Oscilobatiente ×4',amt:'$160K'}]},
+    {t:'En producción',c:'84',col:['ORD-2380','ORD-2381','ORD-2382'],items:[{id:'ORD-2380',nm:'Ventana corrediza ×8',amt:'$420K'},{id:'ORD-2381',nm:'Puerta plegadiza ×6',amt:'$310K'},{id:'ORD-2382',nm:'Portón ×2',amt:'$480K'}]},
+    {t:'En entrega',c:'32',col:['ORD-2370','ORD-2371'],items:[{id:'ORD-2370',nm:'Ventana fija ×3',amt:'$72K'},{id:'ORD-2371',nm:'Oscilobatiente ×2',amt:'$85K'}]},
+    {t:'Entregado',c:'34',col:['ORD-2360','ORD-2361','ORD-2362'],items:[{id:'ORD-2360',nm:'Ventana corrediza ×4',amt:'$210K'},{id:'ORD-2361',nm:'Puerta ×3',amt:'$180K'},{id:'ORD-2362',nm:'Portón ×1',amt:'$240K'}]}
+  ];
+  const orders=[
+    ['ORD-2401','<span class="avatar-sm">JR</span>Constructora Río','Ventana corrediza ×3',vStatus('Nuevo','info'),'19 jun','$185.000'],
+    ['ORD-2398','<span class="avatar-sm">EV</span>Estudio Vera','Portón corredizo ×2',vStatus('En diseño','warn'),'18 jun','$480.000'],
+    ['ORD-2380','<span class="avatar-sm">MS</span>M. Sánchez','Ventana corrediza ×8',vStatus('En producción','info'),'15 jun','$420.000'],
+    ['ORD-2370','<span class="avatar-sm">AT</span>Arq. Torres','Oscilobatiente ×3',vStatus('En entrega','warn'),'14 jun','$135.000'],
+    ['ORD-2360','<span class="avatar-sm">LC</span>L. Castro','Puerta plegadiza ×4',vStatus('Entregado','good'),'13 jun','$240.000'],
+    ['ORD-2358','<span class="avatar-sm">FP</span>F. Pereyra','Ventana fija ×2',vStatus('Entregado','good'),'12 jun','$58.000']
+  ];
+  return vKpiRow(kpis)+`
+  ${vPanel('Tablero de estados','Flujo de pedidos por etapa',`<div class="kanban">${kanban.map((k,ki)=>`<div class="kanban-col anim-up" style="animation-delay:${(ki*0.08).toFixed(2)}s"><div class="kanban-col-head"><span class="kt">${k.t}</span><span class="kc">${k.c}</span></div>${k.items.map(it=>`<div class="kanban-card"><div class="kc-id">${it.id}</div><div class="kc-nm">${it.nm}</div><div class="kc-amt">${it.amt}</div></div>`).join('')}</div>`).join('')}</div>`)}
+  ${vPanel('Pedidos recientes','Últimos pedidos registrados',vTable(['N°','Cliente','Producto','Estado','Fecha','Monto'],orders))}`;
+}
+
+/* ---- Vista: Diseño técnico ---- */
+function viewDiseno(){
+  const kpis=[
+    {name:'Diseños en curso',val:'47',delta:'+8',kind:'good',icon:VI.pen,tone:'blue'},
+    {name:'Tiempo promedio',val:'4,2 días',delta:'-41%',kind:'good',icon:VI.clock,tone:'green'},
+    {name:'Tasa de error',val:'1,8%',delta:'-47%',kind:'good',icon:VI.alert,tone:'orange'},
+    {name:'Presupuestos emitidos',val:'186',delta:'+22%',kind:'good',icon:VI.check,tone:'green'}
+  ];
+  const designers=[{label:'J. Pérez',val:18},{label:'L. Fernández',val:14},{label:'M. Acosta',val:9},{label:'P. Gómez',val:6}];
+  const designs=[
+    ['DIS-0892','<span class="avatar-sm">JR</span>Constructora Río','Ventana corrediza 1,20×1,20',vStatus('En curso','warn'),'2,1 días'],
+    ['DIS-0891','<span class="avatar-sm">EV</span>Estudio Vera','Portón corredizo 3,00×2,40',vStatus('Emitido','good'),'3,8 días'],
+    ['DIS-0890','<span class="avatar-sm">MS</span>M. Sánchez','Puerta plegadiza 0,90×2,10',vStatus('En curso','warn'),'1,5 días'],
+    ['DIS-0889','<span class="avatar-sm">AT</span>Arq. Torres','Oscilobatiente 1,00×1,20',vStatus('Emitido','good'),'4,2 días'],
+    ['DIS-0888','<span class="avatar-sm">LC</span>L. Castro','Ventana fija 1,50×1,00',vStatus('Con error','risk'),'5,1 días'],
+    ['DIS-0887','<span class="avatar-sm">FP</span>F. Pereyra','Ventana corrediza 0,80×1,00',vStatus('Emitido','good'),'3,5 días']
+  ];
+  const errTrend=[3.4,3.1,2.8,2.5,2.3,2.1,1.9,1.8];
+  return vKpiRow(kpis)+`
+  <div class="view-grid-2">
+    ${vPanel('Carga de trabajo por diseñador','Diseños activos asignados',vHBars(designers,'#1E63B6'))}
+    ${vPanel('Tendencia de tasa de error','Mensual · meta 1%',sparkline(errTrend,'#F26A21',300,120))}
+  </div>
+  ${vPanel('Diseños recientes','Últimos presupuestos técnicos',vTable(['N°','Cliente','Abertura','Estado','Tiempo'],designs))}`;
+}
+
+/* ---- Vista: Logística ---- */
+function viewLogistica(){
+  const kpis=[
+    {name:'Entregas hoy',val:'34',delta:'+5',kind:'good',icon:VI.truck,tone:'blue'},
+    {name:'En ruta',val:'12',delta:'',kind:'good',icon:VI.route,tone:'orange'},
+    {name:'Costo promedio',val:'$18.400',delta:'-12%',kind:'good',icon:VI.fuel,tone:'green'},
+    {name:'Tiempo promedio',val:'3,4 días',delta:'-35%',kind:'good',icon:VI.clock,tone:'green'}
+  ];
+  const fleet=[{id:'FL-01',type:'Camión 8m',st:'good',stxt:'En ruta'},{id:'FL-02',type:'Camión 6m',st:'good',stxt:'En ruta'},{id:'FL-03',type:'Utilitario',st:'warn',stxt:'Carga'},{id:'FL-04',type:'Camión 8m',st:'good',stxt:'En ruta'},{id:'FL-05',type:'Utilitario',st:'neutral',stxt:'Taller'},{id:'FL-06',type:'Camión 6m',st:'good',stxt:'Disponible'},{id:'FL-07',type:'Pick-up',st:'good',stxt:'Disponible'},{id:'FL-08',type:'Camión 10m',st:'good',stxt:'En ruta'}];
+  const fleetColors={'good':'#2E7D32','warn':'#F26A21','neutral':'#6B7280','risk':'#C62828'};
+  const routes=[
+    {dest:'Córdoba Capital',det:'3 paradas · 480 km · Chofer R. Díaz',st:vStatus('En ruta','good')},
+    {dest:'Rosario',det:'2 paradas · 310 km · Chofer M. López',st:vStatus('En ruta','good')},
+    {dest:'Mendoza',det:'4 paradas · 1050 km · Chofer A. Sosa',st:vStatus('Cargando','warn')},
+    {dest:'La Plata',det:'1 parada · 95 km · Chofer J. Ruiz',st:vStatus('En ruta','good')},
+    {dest:'Mar del Plata',det:'2 paradas · 410 km · Chofer P. Vera',st:vStatus('Programada','info')}
+  ];
+  const perf=[[34,8],[32,6],[35,5],[33,7],[34,4],[36,3],[34,5],[34,4]];
+  const perfLabels=['Nov','Dic','Ene','Feb','Mar','Abr','May','Jun'];
+  return vKpiRow(kpis)+`
+  <div class="view-grid-2">
+    ${vPanel('Estado de flota','Vehículos disponibles y en operación',`<div class="fleet-grid">${fleet.map((f,i)=>`<div class="fleet-card anim-up" style="animation-delay:${(i*0.05).toFixed(2)}s"><div class="fid">${f.id}</div><div class="ftype">${f.type}</div><div class="fdot" style="background:${fleetColors[f.st]}"></div><div style="font-size:10.5px;font-weight:600;color:${fleetColors[f.st]}">${f.stxt}</div></div>`).join('')}</div>`)}
+    ${vPanel('Performance de entregas','En fecha vs. fuera de fecha',vBarChart(perf,perfLabels,'#2E7D32','#C62828'))}
+  </div>
+  ${vPanel('Rutas del día','Planificación de entregas activas',`<div>${routes.map(r=>`<div class="route-item"><div class="route-num">${routes.indexOf(r)+1}</div><div class="route-info"><div class="rdest">${r.dest}</div><div class="rdet">${r.det}</div></div>${r.st}</div>`).join('')}</div>`)}`;
+}
+
+/* ---- Vista: Reclamos ---- */
+function viewReclamos(){
+  const kpis=[
+    {name:'Reclamos abiertos',val:'7',delta:'-3',kind:'good',icon:VI.alert,tone:'orange'},
+    {name:'Resueltos hoy',val:'12',delta:'+4',kind:'good',icon:VI.check,tone:'green'},
+    {name:'Tiempo promedio',val:'3,8 días',delta:'-55%',kind:'good',icon:VI.clock,tone:'green'},
+    {name:'Tasa resolución',val:'82%',delta:'+24 pts',kind:'good',icon:VI.percent,tone:'blue'}
+  ];
+  const types=[{label:'Entrega tardía',val:18},{label:'Instalación',val:12},{label:'Producto',val:8},{label:'Atención',val:5},{label:'Otros',val:3}];
+  const claims=[
+    ['REC-0341','<span class="avatar-sm">MS</span>M. Sánchez','Entrega tardía',vStatus('Alta','risk'),'2,1 días',vStatus('Abierto','warn')],
+    ['REC-0340','<span class="avatar-sm">EV</span>Estudio Vera','Instalación',vStatus('Media','warn'),'1,8 días',vStatus('En curso','info')],
+    ['REC-0339','<span class="avatar-sm">LC</span>L. Castro','Producto',vStatus('Baja','good'),'0,5 días',vStatus('Resuelto','good')],
+    ['REC-0338','<span class="avatar-sm">JR</span>Constructora Río','Entrega tardía',vStatus('Alta','risk'),'3,2 días',vStatus('En curso','info')],
+    ['REC-0337','<span class="avatar-sm">FP</span>F. Pereyra','Atención',vStatus('Baja','good'),'4,1 días',vStatus('Resuelto','good')],
+    ['REC-0336','<span class="avatar-sm">AT</span>Arq. Torres','Instalación',vStatus('Media','warn'),'2,8 días',vStatus('Resuelto','good')]
+  ];
+  const resTrend=[8.4,7.6,6.9,6.2,5.5,4.9,4.3,3.8];
+  return vKpiRow(kpis)+`
+  <div class="view-grid-2">
+    ${vPanel('Reclamos por tipo','Distribución del período',vHBars(types,'#C62828'))}
+    ${vPanel('Tendencia de tiempo de resolución','Días promedio · meta ≤5',sparkline(resTrend,'#2E7D32',300,120))}
+  </div>
+  ${vPanel('Reclamos recientes','Gestión del CRM',vTable(['N°','Cliente','Tipo','Prioridad','Tiempo','Estado'],claims))}`;
+}
+
+/* ---- Vista: RRHH ---- */
+function viewRRHH(){
+  const kpis=[
+    {name:'Total empleados',val:'128',delta:'+6',kind:'good',icon:VI.users,tone:'blue'},
+    {name:'Rotación',val:'6,2%',delta:'-1,2 pts',kind:'warn',icon:VI.trending,tone:'orange'},
+    {name:'Retención instaladores',val:'91%',delta:'+5 pts',kind:'good',icon:VI.check,tone:'green'},
+    {name:'Horas capacitación',val:'340',delta:'+120',kind:'good',icon:VI.graduation,tone:'purple'}
+  ];
+  const areas=[{label:'Producción',val:42},{label:'Instalación',val:34},{label:'Ventas',val:22},{label:'Administración',val:14},{label:'Diseño',val:10},{label:'Logística',val:6}];
+  const training=[{nm:'Instalación de oscilobatientes',pct:78,c:'#2E7D32'},{nm:'Atención al cliente con chatbot',pct:92,c:'#1E63B6'},{nm:'Medición in situ y presupuestación',pct:55,c:'#F26A21'},{nm:'Seguridad e higiene industrial',pct:100,c:'#2E7D32'}];
+  const hcTrend=[118,121,122,124,125,126,127,128];
+  return vKpiRow(kpis)+`
+  <div class="view-grid-2">
+    ${vPanel('Distribución por área','Headcount por departamento',vHBars(areas,'#1E63B6'))}
+    ${vPanel('Headcount trimestral','Evolución del personal',sparkline(hcTrend,'#2E7D32',300,120))}
+  </div>
+  ${vPanel('Capacitaciones en curso','Progreso por programa',`<div>${training.map((t,i)=>`<div class="train-item"><div class="train-head"><span class="tnm">${t.nm}</span><span class="tpct" style="color:${t.c}">${t.pct}%</span></div><div class="train-track"><div class="train-fill" style="width:${t.pct}%;background:${t.c};animation-delay:${(i*0.1).toFixed(2)}s"></div></div></div>`).join('')}</div>`)}`;
+}
+
+/* ---- Vista: Configuración ---- */
+function viewConfig(){
+  const integ=[
+    {nm:'WhatsApp Business',ds:'Conectado · API activa',st:'good',ico:VI.plug,bg:'#E6F4EA'},
+    {nm:'CRM Salesforce',ds:'Sincronización cada 5 min',st:'good',ico:VI.plug,bg:'#E8F0FB'},
+    {nm:'ERP AluTech',ds:'Conectado · módulo ventas',st:'good',ico:VI.plug,bg:'#E8F0FB'},
+    {nm:'E-commerce',ds:'Conectado · portal web',st:'good',ico:VI.plug,bg:'#E6F4EA'},
+    {nm:'Google Maps API',ds:'Ruteo y geocodificación',st:'good',ico:VI.map,bg:'#FDECE3'},
+    {nm:'Chatbot IA',ds:'Modelo GPT-4 · activo',st:'good',ico:VI.shield,bg:'#F0ECFB'}
+  ];
+  const users=[
+    ['<span class="avatar-sm">MG</span>M. González','Gerencia / Administrador',vStatus('Activo','good'),'Ahora'],
+    ['<span class="avatar-sm">CS</span>C. Sosa','Atención Digital',vStatus('Activo','good'),'Hace 5 min'],
+    ['<span class="avatar-sm">RD</span>R. Díaz','Logística',vStatus('Activo','good'),'Hace 12 min'],
+    ['<span class="avatar-sm">AM</span>A. Molina','Calidad',vStatus('Activo','good'),'Hace 1 h'],
+    ['<span class="avatar-sm">SV</span>S. Vera','RRHH',vStatus('Inactivo','neutral'),'Hace 2 días'],
+    ['<span class="avatar-sm">JP</span>J. Pérez','Diseño Técnico',vStatus('Activo','good'),'Hace 30 min']
+  ];
+  return `
+  <div class="view-grid-2">
+    ${vPanel('Perfil del usuario','Información personal',`<div class="form-grid-2">
+      <div class="form-row"><label>Nombre</label><input type="text" value="M. González" /></div>
+      <div class="form-row"><label>Apellido</label><input type="text" value="Benavides" /></div>
+      <div class="form-row"><label>Email</label><input type="email" value="mgonzalez@alutech.com.ar" /></div>
+      <div class="form-row"><label>Teléfono</label><input type="text" value="+54 351 555-0123" /></div>
+      <div class="form-row"><label>Rol</label><select><option>Gerencia / Administrador</option><option>Supervisor</option><option>Operador</option></select></div>
+      <div class="form-row"><label>Ubicación</label><input type="text" value="Córdoba, Argentina" /></div>
+    </div>`)}
+    ${vPanel('Preferencias','Configuración general del sistema',`<div>
+      <div class="toggle-row"><div><div class="tl">Notificaciones por email</div><div class="td">Resúmenes diarios de KPIs</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+      <div class="toggle-row"><div><div class="tl">Alertas de desvío</div><div class="td">Avisar cuando un KPI sale de meta</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+      <div class="toggle-row"><div><div class="tl">Modo oscuro</div><div class="td">Tema oscuro para el panel</div></div><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+      <div class="toggle-row"><div><div class="tl">Auto-actualización</div><div class="td">Refrescar datos cada 5 minutos</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+      <div class="toggle-row"><div><div class="tl">Exportación automática</div><div class="td">Reporte mensual a gerencia</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+    </div>`)}
+  </div>
+  ${vPanel('Integraciones conectadas','Sistemas externos vinculados',`<div class="view-grid-3">${integ.map((it,i)=>`<div class="integ-card anim-up" style="animation-delay:${(i*0.07).toFixed(2)}s"><div class="integ-ico" style="background:${it.bg};color:#1E63B6">${it.ico}</div><div class="integ-info"><div class="inm">${it.nm}</div><div class="ids">${it.ds}</div></div>${vStatus('Online','good')}</div>`).join('')}</div>`)}
+  ${vPanel('Usuarios del sistema','Equipos con acceso a la plataforma',vTable(['Usuario','Rol','Estado','Último acceso'],users))}`;
+}
+
+/* ---- VIEWS Registry ---- */
+const VIEWS={
+  indicadores:{title:'Panel de Indicadores de Mejora',sub:'Seguimiento de resultados del proceso de gestión de venta de aberturas',search:'Buscar indicador…',render:viewIndicadores,after:()=>{renderSummary();renderTabs();renderGrid();renderBlocks();updateSub();}},
+  ventas:{title:'Ventas',sub:'Gestión comercial y análisis de ingresos por canal',search:'Buscar venta…',render:viewVentas},
+  clientes:{title:'Clientes',sub:'CRM, segmentación y gestión de cartera',search:'Buscar cliente…',render:viewClientes},
+  pedidos:{title:'Pedidos',sub:'Flujo operativo de pedidos y entregas',search:'Buscar pedido…',render:viewPedidos},
+  diseno:{title:'Diseño Técnico',sub:'Presupuestación y gestión de diseños de aberturas',search:'Buscar diseño…',render:viewDiseno},
+  logistica:{title:'Logística',sub:'Distribución, flota y ruteo de entregas',search:'Buscar ruta…',render:viewLogistica},
+  reclamos:{title:'Reclamos',sub:'Gestión de incidencias y postventa',search:'Buscar reclamo…',render:viewReclamos},
+  rrhh:{title:'Recursos Humanos',sub:'Personal, capacitación y retención de talento',search:'Buscar empleado…',render:viewRRHH},
+  config:{title:'Configuración',sub:'Perfil, integraciones y preferencias del sistema',search:'Buscar…',render:viewConfig}
+};
+
+/* ---- Switch View ---- */
+function switchView(key){
+  const v=VIEWS[key]; if(!v) return;
+  currentView=key;
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.view===key));
+  document.getElementById('headerTitle').textContent=v.title;
+  document.getElementById('headerSub').textContent=v.sub;
+  const si=document.getElementById('searchInput');
+  si.placeholder=v.search||'Buscar…'; si.value=''; searchQuery='';
+  const content=document.getElementById('content');
+  content.innerHTML=v.render();
+  content.classList.remove('grid-fade'); void content.offsetWidth; content.classList.add('grid-fade');
+  if(v.after) v.after();
+  content.querySelectorAll('.val[data-final]').forEach((el,i)=>countUp(el,el.dataset.final,1000,i*70+200));
+}
+
+/* =========================================================
    Init
    ========================================================= */
-document.getElementById('searchInput').addEventListener('input',e=>{ searchQuery=e.target.value; renderGrid(false); });
-renderSummary();
-renderTabs();
-renderGrid();
-renderBlocks();
-updateSub();
+document.querySelectorAll('.nav-item').forEach(item=>{
+  item.addEventListener('click',()=>switchView(item.dataset.view));
+});
+document.getElementById('searchInput').addEventListener('input',e=>{
+  searchQuery=e.target.value;
+  if(currentView==='indicadores') renderGrid(false);
+});
+switchView('indicadores');
 </script>
 </body>
 </html>

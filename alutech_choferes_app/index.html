@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AluTech S.A. | App Choferes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue-dark:#0B2D5C;
+      --blue:#1E63B6;
+      --blue-2:#0F4D99;
+      --green:#2E7D32;
+      --orange:#F26A21;
+      --red:#C62828;
+      --yellow:#F6A609;
+      --bg:#F5F7FA;
+      --card:#FFFFFF;
+      --text:#2B2B2B;
+      --muted:#6B7280;
+      --border:#D9DEE7;
+      --soft-blue:#EAF2FF;
+      --soft-orange:#FFF0E8;
+      --shadow:0 18px 45px rgba(11,45,92,.12);
+      --shadow-soft:0 8px 22px rgba(11,45,92,.08);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(135deg,#eef3f9 0%,#f8fafc 55%,#fff7f1 100%);color:var(--text);min-height:100vh;}
+    .stage{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px;gap:28px;}
+    .phone{width:390px;max-width:100%;height:844px;background:#fff;border:12px solid #101828;border-radius:42px;box-shadow:0 35px 80px rgba(17,24,39,.28);overflow:hidden;position:relative;}
+    .speaker{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:112px;height:25px;background:#101828;border-bottom-left-radius:18px;border-bottom-right-radius:18px;z-index:20;}
+    .screen{height:100%;background:var(--bg);overflow:hidden;position:relative;}
+    .app{height:100%;display:flex;flex-direction:column;}
+    header{background:linear-gradient(145deg,var(--blue-dark),#123E77);color:#fff;padding:40px 18px 18px;border-bottom-left-radius:28px;border-bottom-right-radius:28px;box-shadow:var(--shadow);}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+    .brand{display:flex;align-items:center;gap:10px;min-width:0;}
+    .brand img{width:118px;height:auto;background:#fff;border-radius:8px;padding:5px;object-fit:contain;box-shadow:0 6px 14px rgba(0,0,0,.12)}
+    .status-pill{font-size:11px;font-weight:700;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:7px 9px;display:flex;align-items:center;gap:6px;white-space:nowrap;}
+    .dot{width:8px;height:8px;border-radius:999px;background:#3BE477;box-shadow:0 0 0 4px rgba(59,228,119,.18)}
+    .headline{margin-top:18px;}
+    .headline small{display:block;opacity:.72;font-weight:600;margin-bottom:4px;font-size:12px;letter-spacing:.02em}
+    .headline h1{font-size:22px;line-height:1.2;margin:0;font-weight:800;letter-spacing:-.03em}
+    .route-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px;}
+    .summary-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:10px 8px;}
+    .summary-card b{display:block;font-size:18px;line-height:1;font-weight:800}.summary-card span{font-size:10px;opacity:.76;font-weight:600;line-height:1.2;display:block;margin-top:4px}
+    main{flex:1;overflow-y:auto;padding:16px 16px 92px;scrollbar-width:none;} main::-webkit-scrollbar{display:none}
+    .section{display:none;animation:rise .28s ease-out}.section.active{display:block}@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+    .quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+    .action{border:1px solid var(--border);background:#fff;border-radius:18px;padding:14px;box-shadow:var(--shadow-soft);display:flex;gap:10px;align-items:center;cursor:pointer;transition:.18s}.action:active{transform:scale(.98)}
+    .ico{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:var(--soft-blue);color:var(--blue-dark);font-weight:800;font-size:18px;flex:0 0 auto}.ico.orange{background:var(--soft-orange);color:var(--orange)}.ico.green{background:#EAF7ED;color:var(--green)}.ico.red{background:#FDECEC;color:var(--red)}
+    .action div:last-child{min-width:0}.action b{font-size:13px;display:block}.action span{font-size:11px;color:var(--muted);display:block;margin-top:2px;line-height:1.2}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:15px;box-shadow:var(--shadow-soft);margin-bottom:14px;}
+    .card-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;}.card-title h2{margin:0;font-size:16px;font-weight:800;color:var(--blue-dark);letter-spacing:-.02em}.card-title span{font-size:11px;color:var(--muted);font-weight:700}
+    .progress{height:9px;background:#edf0f5;border-radius:999px;overflow:hidden}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--orange),#ff9a3c);border-radius:999px;width:63%}
+    .driver-card{display:flex;align-items:center;gap:12px;}.avatar{width:48px;height:48px;border-radius:17px;background:linear-gradient(145deg,var(--blue),var(--blue-dark));display:grid;place-items:center;color:#fff;font-size:22px;font-weight:800}.driver-card b{font-size:15px}.driver-card span{display:block;color:var(--muted);font-size:12px;margin-top:2px}.truck-status{margin-left:auto;text-align:right}.truck-status b{display:block;color:var(--green);font-size:13px}.truck-status span{font-size:11px;color:var(--muted)}
+    .route-list{display:flex;flex-direction:column;gap:11px}.delivery{background:#fff;border:1px solid var(--border);border-radius:20px;padding:13px;box-shadow:var(--shadow-soft);position:relative;overflow:hidden}.delivery::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--blue)}.delivery.done::before{background:var(--green)}.delivery.warn::before{background:var(--orange)}.delivery.risk::before{background:var(--red)}
+    .delivery-head{display:flex;align-items:flex-start;gap:9px}.number{width:30px;height:30px;border-radius:10px;background:var(--soft-blue);color:var(--blue-dark);font-weight:800;display:grid;place-items:center;font-size:13px;flex:0 0 auto}.delivery.done .number{background:#EAF7ED;color:var(--green)}.delivery.warn .number{background:var(--soft-orange);color:var(--orange)}.delivery.risk .number{background:#FDECEC;color:var(--red)}
+    .delivery h3{font-size:14px;margin:0 0 3px;font-weight:800;color:#1f2937}.delivery p{margin:0;color:var(--muted);font-size:12px;line-height:1.35}.badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 8px;font-size:10px;font-weight:800;background:#eef2f7;color:#475467;white-space:nowrap}.badge.good{background:#EAF7ED;color:var(--green)}.badge.warn{background:#FFF3E8;color:var(--orange)}.badge.risk{background:#FDECEC;color:var(--red)}
+    .delivery-actions{display:flex;gap:8px;margin-top:11px}.btn{border:0;border-radius:12px;padding:10px 11px;font-weight:800;font-size:12px;cursor:pointer;background:var(--blue-dark);color:#fff;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:.18s}.btn.secondary{background:#eef2f7;color:var(--blue-dark)}.btn.orange{background:var(--orange)}.btn.green{background:var(--green)}.btn:active{transform:scale(.98)}.btn.full{width:100%}
+    .map-card{height:190px;border-radius:22px;overflow:hidden;position:relative;background:linear-gradient(135deg,#dce7f4,#f7fafc);border:1px solid var(--border);margin-bottom:14px}.map-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(11,45,92,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(11,45,92,.08) 1px,transparent 1px);background-size:34px 34px}.route-line{position:absolute;inset:0}.pin{position:absolute;width:31px;height:31px;border-radius:50% 50% 50% 4px;transform:rotate(-45deg);background:var(--orange);display:grid;place-items:center;color:#fff;font-weight:800;box-shadow:0 7px 16px rgba(242,106,33,.32)}.pin span{transform:rotate(45deg);font-size:12px}.pin.p1{left:40px;top:42px}.pin.p2{left:165px;top:75px;background:var(--blue)}.pin.p3{right:58px;bottom:44px;background:var(--green)}.map-info{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:16px;padding:10px;display:flex;justify-content:space-between;align-items:center}.map-info b{font-size:13px;color:var(--blue-dark)}.map-info span{font-size:11px;color:var(--muted)}
+    .form{display:grid;gap:10px}.field label{display:block;font-size:12px;color:var(--muted);font-weight:800;margin-bottom:6px}.field input,.field textarea,.field select{width:100%;border:1px solid var(--border);border-radius:14px;padding:12px 12px;font:inherit;font-size:13px;background:#fff;color:var(--text);outline:none}.field textarea{min-height:78px;resize:none}.upload{border:1.5px dashed #b8c2d3;border-radius:18px;padding:18px;text-align:center;background:#fbfcff;color:var(--muted);font-size:12px;font-weight:700}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{background:#fff;border:1px solid var(--border);border-radius:18px;padding:14px;box-shadow:var(--shadow-soft)}.metric b{font-size:22px;color:var(--blue-dark);display:block;letter-spacing:-.04em}.metric span{font-size:11px;color:var(--muted);font-weight:700}.metric small{display:block;font-size:10px;margin-top:6px;color:var(--green);font-weight:800}.metric small.warn{color:var(--orange)}
+    .bottom-nav{position:absolute;left:0;right:0;bottom:0;height:76px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr);padding:8px 10px 12px;z-index:10}.nav-item{border:0;background:transparent;color:var(--muted);font:inherit;font-size:10px;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;border-radius:16px;padding:7px 4px}.nav-item svg{width:22px;height:22px;stroke:currentColor;stroke-width:2;fill:none}.nav-item.active{background:var(--soft-blue);color:var(--blue-dark)}
+    .toast{position:absolute;left:18px;right:18px;bottom:88px;background:#111827;color:#fff;border-radius:16px;padding:12px 14px;font-size:12px;font-weight:700;box-shadow:var(--shadow);transform:translateY(20px);opacity:0;pointer-events:none;transition:.28s;z-index:99}.toast.show{transform:none;opacity:1}.modal{position:absolute;inset:0;background:rgba(17,24,39,.55);backdrop-filter:blur(8px);display:none;align-items:flex-end;z-index:50}.modal.active{display:flex}.sheet{background:#fff;border-top-left-radius:28px;border-top-right-radius:28px;width:100%;padding:18px 18px 26px;box-shadow:0 -22px 60px rgba(17,24,39,.22);animation:up .2s ease-out}@keyframes up{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
+    .sheet h2{margin:0;color:var(--blue-dark);font-size:18px}.sheet p{font-size:13px;color:var(--muted);line-height:1.45}.sheet-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.sheet-grid div{background:var(--bg);border-radius:14px;padding:10px}.sheet-grid b{display:block;font-size:13px;color:var(--blue-dark)}.sheet-grid span{font-size:11px;color:var(--muted)}
+    .desktop-info{max-width:430px;display:none}.desktop-info h2{font-size:36px;line-height:1.08;margin:0 0 14px;color:var(--blue-dark);letter-spacing:-.04em}.desktop-info p{color:#475467;line-height:1.6;margin:0 0 18px}.desktop-info .pill{display:inline-flex;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow-soft);border-radius:999px;padding:9px 12px;font-size:12px;font-weight:800;color:var(--blue-dark);margin:4px 4px 0 0}
+    @media(min-width:900px){.desktop-info{display:block}} @media(max-width:430px){.stage{padding:0}.phone{width:100vw;height:100vh;border:0;border-radius:0}.speaker{display:none}header{padding-top:18px;border-radius:0 0 28px 28px}}
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="phone">
+      <div class="speaker"></div>
+      <div class="screen">
+        <div class="app">
+          <header>
+            <div class="topbar">
+              <div class="brand"><img src="assets/alutech-logo.png" alt="AluTech S.A. logo" /></div>
+              <div class="status-pill"><span class="dot"></span> En línea</div>
+            </div>
+            <div class="headline">
+              <small>App móvil para choferes</small>
+              <h1>Hoja de ruta y entregas en tiempo real</h1>
+            </div>
+            <div class="route-summary">
+              <div class="summary-card"><b id="countStops">6</b><span>Paradas asignadas</span></div>
+              <div class="summary-card"><b>42 km</b><span>Recorrido estimado</span></div>
+              <div class="summary-card"><b id="countDone">1/6</b><span>Entregas completadas</span></div>
+            </div>
+          </header>
+          <main>
+            <section id="home" class="section active">
+              <div class="driver-card card">
+                <div class="avatar">M</div>
+                <div><b>Martín López</b><span>Chofer · Unidad AT-04</span></div>
+                <div class="truck-status"><b>Ruta activa</b><span>Actualizado 09:42</span></div>
+              </div>
+              <div class="quick-actions">
+                <div class="action" onclick="showSection('route')"><div class="ico">↗</div><div><b>Ver ruta</b><span>Paradas y prioridades</span></div></div>
+                <div class="action" onclick="openReport()"><div class="ico orange">!</div><div><b>Reportar novedad</b><span>Demora, daño o ausencia</span></div></div>
+                <div class="action" onclick="showSection('delivery')"><div class="ico green">✓</div><div><b>Confirmar entrega</b><span>Evidencia y firma</span></div></div>
+                <div class="action" onclick="showToast('Sincronización realizada con ERP/CRM')"><div class="ico">⟳</div><div><b>Sincronizar</b><span>Datos de la jornada</span></div></div>
+              </div>
+              <div class="card">
+                <div class="card-title"><h2>Avance de la jornada</h2><span>63%</span></div>
+                <div class="progress"><span></span></div>
+              </div>
+              <div class="card">
+                <div class="card-title"><h2>Próxima entrega</h2><span>Prioridad alta</span></div>
+                <div class="delivery warn" style="box-shadow:none;margin:0">
+                  <div class="delivery-head"><div class="number">2</div><div style="flex:1"><h3>Obra Villa Allende</h3><p>Pedido #AT-1842 · 4 aberturas DVH · ETA 10:25</p></div><span class="badge warn">En camino</span></div>
+                  <div class="delivery-actions"><button class="btn secondary" onclick="openDetail(1)">Detalle</button><button class="btn orange" onclick="showToast('Cliente notificado por demora estimada')">Avisar demora</button></div>
+                </div>
+              </div>
+              <div class="metrics">
+                <div class="metric"><b>87%</b><span>Entregas en fecha</span><small>+18% vs. mes anterior</small></div>
+                <div class="metric"><b>3</b><span>Novedades abiertas</span><small class="warn">Revisar antes de cerrar ruta</small></div>
+              </div>
+            </section>
+            <section id="route" class="section">
+              <div class="map-card">
+                <div class="map-grid"></div>
+                <svg class="route-line" viewBox="0 0 360 190" preserveAspectRatio="none"><path d="M58 72 C120 20 153 125 205 88 S285 86 306 137" stroke="#0B2D5C" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="10 10" opacity=".82"/></svg>
+                <div class="pin p1"><span>1</span></div><div class="pin p2"><span>2</span></div><div class="pin p3"><span>3</span></div>
+                <div class="map-info"><div><b>Ruta Córdoba Norte</b><br><span>Optimizada por prioridad, zona y volumen</span></div><button class="btn secondary" onclick="showToast('Abriendo navegación externa')">Navegar</button></div>
+              </div>
+              <div class="card-title"><h2>Hoja de ruta</h2><span>6 entregas</span></div>
+              <div id="routeList" class="route-list"></div>
+            </section>
+            <section id="delivery" class="section">
+              <div class="card">
+                <div class="card-title"><h2>Confirmación de entrega</h2><span>Pedido #AT-1842</span></div>
+                <div class="form">
+                  <div class="field"><label>Estado</label><select id="deliveryStatus"><option>Entregado correctamente</option><option>Entregado con observación</option><option>No entregado - cliente ausente</option><option>No entregado - dirección incorrecta</option><option>Demora por tránsito</option></select></div>
+                  <div class="field"><label>Recibido por</label><input placeholder="Nombre de quien recibe" /></div>
+                  <div class="field"><label>Observación</label><textarea placeholder="Registrar novedades, daños, faltantes o comentarios del cliente"></textarea></div>
+                  <div class="upload">＋ Adjuntar foto de remito, abertura o firma</div>
+                  <button class="btn green full" onclick="confirmDelivery()">Confirmar y sincronizar</button>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-title"><h2>Checklist operativo</h2><span>Antes de cerrar</span></div>
+                <div class="route-list">
+                  <div class="delivery done"><div class="delivery-head"><div class="number">✓</div><div><h3>Pedido correcto</h3><p>Validar código, cliente y cantidad de aberturas.</p></div></div></div>
+                  <div class="delivery done"><div class="delivery-head"><div class="number">✓</div><div><h3>Evidencia fotográfica</h3><p>Adjuntar comprobante visual para trazabilidad.</p></div></div></div>
+                  <div class="delivery warn"><div class="delivery-head"><div class="number">!</div><div><h3>Sincronización pendiente</h3><p>Se actualiza en ERP/CRM al recuperar conexión.</p></div></div></div>
+                </div>
+              </div>
+            </section>
+            <section id="profile" class="section">
+              <div class="driver-card card">
+                <div class="avatar">M</div><div><b>Martín López</b><span>Chofer · Legajo AT-148</span></div><div class="truck-status"><b>AT-04</b><span>Sprinter</span></div>
+              </div>
+              <div class="metrics">
+                <div class="metric"><b>24</b><span>Entregas del mes</span><small>+6 entregas</small></div>
+                <div class="metric"><b>96%</b><span>Datos sincronizados</span><small>Sin errores críticos</small></div>
+                <div class="metric"><b>1.8 h</b><span>Promedio por ruta</span><small class="warn">Depende del tráfico</small></div>
+                <div class="metric"><b>4.7</b><span>Calificación cliente</span><small>Post-entrega</small></div>
+              </div>
+              <div class="card"><div class="card-title"><h2>Conectividad</h2><span>4G/5G</span></div><p style="margin:0;color:var(--muted);font-size:13px;line-height:1.45">La app mantiene datos locales si no hay señal y sincroniza la entrega al recuperar conexión.</p></div>
+              <button class="btn secondary full" onclick="showToast('Sesión cerrada en modo demo')">Cerrar sesión</button>
+            </section>
+          </main>
+          <nav class="bottom-nav">
+            <button class="nav-item active" data-target="home" onclick="showSection('home')"><svg viewBox="0 0 24 24"><path d="M3 10.8 12 3l9 7.8V21h-6v-6H9v6H3z"/></svg>Inicio</button>
+            <button class="nav-item" data-target="route" onclick="showSection('route')"><svg viewBox="0 0 24 24"><path d="M6 3v18M18 3v18M6 6c5 0 7 3 12 3M6 15c5 0 7 3 12 3"/></svg>Ruta</button>
+            <button class="nav-item" data-target="delivery" onclick="showSection('delivery')"><svg viewBox="0 0 24 24"><path d="M20 7 9 18l-5-5"/></svg>Entrega</button>
+            <button class="nav-item" data-target="profile" onclick="showSection('profile')"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.4-4 14.6-4 16 0"/></svg>Perfil</button>
+          </nav>
+          <div id="toast" class="toast"></div>
+          <div id="modal" class="modal" onclick="closeModal(event)"><div class="sheet"><h2 id="modalTitle">Detalle de entrega</h2><p id="modalText"></p><div class="sheet-grid"><div><b id="modalEta">10:25</b><span>ETA estimado</span></div><div><b id="modalPkg">4</b><span>Aberturas</span></div><div><b id="modalAddress">Zona norte</b><span>Dirección</span></div><div><b>CRM + ERP</b><span>Sincronización</span></div></div><button class="btn full" onclick="closeModal()">Entendido</button></div></div>
+        </div>
+      </div>
+    </div>
+    <aside class="desktop-info">
+      <h2>App móvil para choferes</h2>
+      <p>Prototipo funcional alineado con la estética del dashboard AluTech. Permite consultar hoja de ruta, actualizar estados, reportar novedades y confirmar entregas en tiempo real.</p>
+      <span class="pill">ERP / CRM</span><span class="pill">Ruteo</span><span class="pill">4G/5G</span><span class="pill">Trazabilidad</span>
+    </aside>
+  </div>
+  <script>
+    const deliveries = [
+      {id:1, title:'Showroom Centro', desc:'Pedido #AT-1836 · 2 aberturas · Recibido por cliente', status:'done', badge:'Entregado', eta:'09:10', pkg:'2', address:'Centro'},
+      {id:2, title:'Obra Villa Allende', desc:'Pedido #AT-1842 · 4 aberturas DVH · Prioridad alta', status:'warn', badge:'En camino', eta:'10:25', pkg:'4', address:'Villa Allende'},
+      {id:3, title:'Barrio General Paz', desc:'Pedido #AT-1848 · 1 puerta balcón · Coordinar acceso', status:'', badge:'Pendiente', eta:'11:40', pkg:'1', address:'General Paz'},
+      {id:4, title:'Constructoras Norte', desc:'Pedido #AT-1851 · 6 aberturas estándar', status:'', badge:'Pendiente', eta:'13:10', pkg:'6', address:'Zona norte'},
+      {id:5, title:'Reclamo postventa', desc:'Revisión por ajuste de cierre · requiere foto', status:'risk', badge:'Novedad', eta:'14:20', pkg:'1', address:'Argüello'},
+      {id:6, title:'Depósito externo', desc:'Retiro de material para ruta siguiente', status:'', badge:'Pendiente', eta:'16:00', pkg:'Retiro', address:'Circunvalación'}
+    ];
+    function renderRoute(){
+      const box = document.getElementById('routeList');
+      box.innerHTML = deliveries.map((d,i)=>`<div class="delivery ${d.status}"><div class="delivery-head"><div class="number">${d.status==='done'?'✓':d.id}</div><div style="flex:1"><h3>${d.title}</h3><p>${d.desc}<br>ETA ${d.eta} · ${d.address}</p></div><span class="badge ${d.status==='done'?'good':d.status==='warn'?'warn':d.status==='risk'?'risk':''}">${d.badge}</span></div><div class="delivery-actions"><button class="btn secondary" onclick="openDetail(${i})">Detalle</button><button class="btn ${d.status==='done'?'secondary':'green'}" onclick="markDone(${i})">${d.status==='done'?'Ver comprobante':'Completar'}</button></div></div>`).join('');
+    }
+    function showSection(id){
+      document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id===id));
+      document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.target===id));
+      if(id==='route') renderRoute();
+    }
+    function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2400); }
+    function openDetail(i){ const d=deliveries[i]; document.getElementById('modalTitle').textContent=d.title; document.getElementById('modalText').textContent=d.desc + '. La entrega se actualiza en tiempo real para despacho, CRM y tablero operativo.'; document.getElementById('modalEta').textContent=d.eta; document.getElementById('modalPkg').textContent=d.pkg; document.getElementById('modalAddress').textContent=d.address; document.getElementById('modal').classList.add('active'); }
+    function closeModal(e){ if(!e || e.target.id==='modal' || e.target.tagName==='BUTTON') document.getElementById('modal').classList.remove('active'); }
+    function markDone(i){ deliveries[i].status='done'; deliveries[i].badge='Entregado'; renderRoute(); document.getElementById('countDone').textContent = `${deliveries.filter(d=>d.status==='done').length}/6`; showToast('Entrega actualizada y sincronizada'); }
+    function confirmDelivery(){ showToast('Entrega confirmada: datos enviados a ERP/CRM'); showSection('route'); }
+    function openReport(){ showSection('delivery'); setTimeout(()=>showToast('Seleccione estado y registre observación'),250); }
+    renderRoute();
+  </script>
+</body>
+</html>
